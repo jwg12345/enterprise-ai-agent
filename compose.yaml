@@ -1,0 +1,97 @@
+name: enterprise-ai-agent
+x-business-env: &business-env
+  BUSINESS_DATABASE_URL: jdbc:postgresql://postgres:5432/enterprise?currentSchema=business
+  BUSINESS_DB_USER: business_app
+  BUSINESS_DB_PASSWORD: ${BUSINESS_DB_PASSWORD:?Run scripts/init_env.py}
+  BUSINESS_SERVICE_TOKEN: ${BUSINESS_SERVICE_TOKEN:?Run scripts/init_env.py}
+services:
+  postgres:
+    image: postgres:17.6
+    environment:
+      POSTGRES_DB: enterprise
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run scripts/init_env.py}
+      BUSINESS_DB_PASSWORD: ${BUSINESS_DB_PASSWORD:?Run scripts/init_env.py}
+      AGENT_DB_PASSWORD: ${AGENT_DB_PASSWORD:?Run scripts/init_env.py}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sh:/docker-entrypoint-initdb.d/01-roles.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d enterprise"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  chroma:
+    image: chromadb/chroma:1.5.5
+    profiles: ["rag"]
+    volumes:
+      - chroma-data:/data
+    environment:
+      IS_PERSISTENT: "TRUE"
+      ANONYMIZED_TELEMETRY: "FALSE"
+  business:
+    build:
+      context: .
+      dockerfile: business-service/Dockerfile
+    environment: *business-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health/readiness >/dev/null"]
+      interval: 5s
+      timeout: 4s
+      retries: 30
+  seed:
+    build:
+      context: .
+      dockerfile: business-service/Dockerfile
+    profiles: ["tools"]
+    environment:
+      <<: *business-env
+      FIXTURE_PATH: /fixtures/incidents.json
+    volumes:
+      - ./data/fixtures:/fixtures:ro
+    command: ["--spring.profiles.active=seed", "--spring.main.web-application-type=none"]
+    depends_on:
+      business:
+        condition: service_healthy
+  ai:
+    build:
+      context: .
+      dockerfile: ai-service/Dockerfile
+    environment:
+      BUSINESS_API_URL: http://business:8080
+      BUSINESS_SERVICE_TOKEN: ${BUSINESS_SERVICE_TOKEN:?Run scripts/init_env.py}
+      DEMO_VIEWER_TOKEN: ${DEMO_VIEWER_TOKEN:?Run scripts/init_env.py}
+      DEMO_OPERATOR_TOKEN: ${DEMO_OPERATOR_TOKEN:?Run scripts/init_env.py}
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      business:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/workspace/.venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  ui:
+    build:
+      context: .
+      dockerfile: demo-ui/Dockerfile
+    environment:
+      AI_API_URL: http://ai:8000
+      DEMO_VIEWER_TOKEN: ${DEMO_VIEWER_TOKEN:?Run scripts/init_env.py}
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      ai:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/workspace/.venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health', timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+volumes:
+  postgres-data:
+  chroma-data:

@@ -1,0 +1,48 @@
+name: M1 checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.10.11"
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - run: uv run ruff check ai-service demo-ui scripts
+      - run: uv run pytest -q
+      - run: uv run python scripts/check_docs.py
+      - run: uv pip install --python .venv/bin/python --torch-backend cpu --require-hashes -r ai-service/requirements-m2.lock
+      - run: uv run --no-sync pytest ai-service/tests_m2 -q
+      - run: uv run --no-sync pytest -q
+  java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+          cache-dependency-path: business-service/pom.xml
+      - run: sh mvnw -B verify -Pintegration
+        working-directory: business-service
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/init_env.py
+      - run: docker compose up --build -d --wait --wait-timeout 300
+      - run: docker compose run --rm seed
+      - run: python scripts/smoke.py
+      - name: Shutdown
+        if: always()
+        run: docker compose down

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: business-service
+  datasource:
+    url: ${BUSINESS_DATABASE_URL}
+    username: ${BUSINESS_DB_USER:business_app}
+    password: ${BUSINESS_DB_PASSWORD}
+    hikari:
+      connection-timeout: 3000
+  flyway:
+    default-schema: business
+    schemas: business
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState,db
+logging:
+  structured:
+    format:
+      console: logstash

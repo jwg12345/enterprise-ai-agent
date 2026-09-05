@@ -1,0 +1,50 @@
+# 미검증 M2 추가 구성: hash lock 생성과 모델 revision 설정이 필요합니다.
+services:
+  ai:
+    build:
+      context: .
+      dockerfile: ai-service/Dockerfile.m2
+    environment:
+      M2_ENABLED: "true"
+      EMBEDDING_REVISION: ${EMBEDDING_REVISION:?Set a fixed BGE-M3 commit SHA}
+      CHROMA_HOST: chroma
+      CHROMA_PORT: "8000"
+      HF_HOME: /model-cache
+      INDEX_MANIFEST: /index/active.json
+      LLM_MODE: ${LLM_MODE:-extractive}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      RAG_MAX_DISTANCE: ${RAG_MAX_DISTANCE:-0.45}
+    volumes:
+      - model-cache:/model-cache
+      - rag-index:/index
+    depends_on:
+      chroma:
+        condition: service_started
+  ingest:
+    build:
+      context: .
+      dockerfile: ai-service/Dockerfile.m2
+    profiles: ["tools"]
+    command: ["/workspace/.venv/bin/python", "-m", "app.rag.ingest"]
+    environment:
+      EMBEDDING_REVISION: ${EMBEDDING_REVISION:?Set a fixed BGE-M3 commit SHA}
+      CHROMA_HOST: chroma
+      CHROMA_PORT: "8000"
+      HF_HOME: /model-cache
+      INDEX_MANIFEST: /index/active.json
+      MANUAL_DIR: /manuals
+    volumes:
+      - model-cache:/model-cache
+      - rag-index:/index
+      - ./data/manuals:/manuals:ro
+    depends_on:
+      chroma:
+        condition: service_started
+  ui:
+    environment:
+      M2_ENABLED: "true"
+volumes:
+  model-cache:
+  rag-index:

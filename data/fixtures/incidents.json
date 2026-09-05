@@ -1,0 +1,6 @@
+[
+  {"id":"INC-014","category":"NETWORK","severity":"P1","status":"OPEN","occurred_at":"2026-08-14T09:00:00+09:00","cause":"Gateway Timeout","version":1},
+  {"id":"INC-015","category":"NETWORK","severity":"P1","status":"RESOLVED","occurred_at":"2026-08-18T14:00:00+09:00","cause":"Load Balancer 연결 오류","version":1},
+  {"id":"INC-016","category":"SERVER","severity":"P1","status":"IN_PROGRESS","occurred_at":"2026-08-20T11:00:00+09:00","cause":"메모리 부족","version":1},
+  {"id":"INC-017","category":"NETWORK","severity":"P1","status":"OPEN","occurred_at":"2026-07-31T23:59:00+09:00","cause":"DNS 응답 지연","version":1}
+]

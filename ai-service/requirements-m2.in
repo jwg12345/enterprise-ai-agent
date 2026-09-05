@@ -1,0 +1,4 @@
+# M2 추가 의존성 후보. 설치/호환성 검증 및 hash lock 생성은 아직 미완료.
+langgraph==1.2.11
+sentence-transformers==6.0.1
+chromadb==1.5.5
