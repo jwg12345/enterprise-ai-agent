@@ -1,0 +1,31 @@
+name: M2 manual integration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  m2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.10.11"
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - run: uv run python scripts/init_env.py
+      - name: Configure fixed model and extractive mode
+        run: |
+          echo 'EMBEDDING_REVISION=5617a9f61b028005a4858fdac845db406aefb181' >> .env
+          echo 'LLM_MODE=extractive' >> .env
+      - run: docker compose -f compose.yaml -f compose.m2.yaml --profile rag build ingest ai ui
+      - run: docker compose -f compose.yaml -f compose.m2.yaml --profile rag up -d postgres business chroma
+      - run: docker compose -f compose.yaml -f compose.m2.yaml --profile rag run --rm ingest
+      - run: docker compose -f compose.yaml -f compose.m2.yaml --profile rag up -d --wait --wait-timeout 300 ai ui
+      - run: docker compose -f compose.yaml -f compose.m2.yaml --profile rag run --rm seed
+      - run: uv run --no-sync python scripts/smoke_m2.py
+      - run: uv run --no-sync python scripts/smoke_m2_ui.py
+      - name: Shutdown
+        if: always()
+        run: docker compose -f compose.yaml -f compose.m2.yaml --profile rag down

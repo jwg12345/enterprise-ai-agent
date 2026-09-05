@@ -158,3 +158,49 @@
 
 - 프로젝트 폴더에서 git init -b main을 실행했습니다. 이후 git rev-parse --show-toplevel이 프로젝트 폴더를 가리키는 것을 확인했습니다.
 - 상위 드라이브 저장소는 변경하지 않았습니다. 공개 GitHub 저장소 enterprise-ai-agent를 만들기로 사용자가 선택했습니다. 원격 생성/업로드는 인증 후 별도로 확인합니다.
+
+## TS-014 — 앱 세션에서 M2 재개 시 파일 접근 거부
+
+- GitHub 업로드를 보류하고 M2 재개를 시도했습니다. Docker 설정 읽기와 네트워크 권한을 요청하여 승인됐지만 재시도에서도 설정 파일 접근 거부와 엔진 파이프 없음이 발생했습니다.
+- Docker Desktop 실행을 시도했습니다. 실제 엔진 연결 성공은 별도 확인이 필요합니다.
+- 실제 그래프 테스트 2건을 재실행했으나 uuid_utils 확장 DLL import에서 접근 거부로 실패했습니다. 기능 assertion 실패와 구분합니다. 이전 CLI 세션의 2건 통과 기록을 삭제하지 않습니다.
+- pytest 캐시 폴더도 접근 거부 경고가 나와 캐시 없이 다시 확인했고 동일 DLL 오류가 재현됐습니다.
+- 모델 적재·M2 통합 검증은 아직 실행하지 못했습니다. 권한이 허용된 실행 환경에서 재개해야 하며 라이브러리 코드를 수정해 권한 실패를 숨기지 않습니다.
+
+### TS-014 CLI 재확인
+
+현재 CLI의 승인된 실행에서 Docker 연결에 성공했고 `uv run --no-sync pytest ai-service/tests_m2 -q -p no:cacheprovider`가 2 passed(1.91초)로 종료됐습니다. 앱 세션의 DLL 접근 거부는 이 CLI 실행에서는 재현되지 않았습니다. 파일 권한이나 라이브러리 코드를 변경하지 않았으므로 앱 세션 자체가 해결됐다고 단정하지 않습니다.
+
+기존 Docker 빌드 이력의 AI/ingest 두 작업은 Completed(11분 52초), 각 이미지 크기는 2.52GB로 확인했습니다. 기반 컨테이너가 Exited(255)였지만 원인은 확정하지 않았습니다. PostgreSQL·Business·Chroma를 다시 기동했고 기존 이미지로 모델 적재를 시작했습니다. 실제 검색·M2 화면 검증은 아직 진행 전입니다. GitHub 업로드는 보류합니다.
+
+## TS-015 — 모델 준비 지연과 CPU 스레드 제한 재시도
+
+- 최초 ingest에서 공개 BGE-M3 캐시 약 2.2GiB 및 가중치 로딩을 확인했지만 활성 manifest 생성 전 지연됐습니다. 프로세스 관측 VmSwap 429,096kB, VmHWM 2,639,184kB, Threads 31이었고 OOMKilled=false였습니다. 스왑은 확인된 사실이며 지연의 유일한 원인으로 단정하지 않습니다. 로그만으로 모델 준비와 문서 인코딩의 정확한 단계별 시간을 분리하지 못했습니다.
+- 현재 적재 컨테이너만 중지하고 캐시·DB·Chroma volume은 보존했습니다. stop --time은 deprecated 경고가 있어 이후 --timeout을 사용합니다.
+- compose.m2.yaml의 AI/ingest에 OMP_NUM_THREADS=2, MKL_NUM_THREADS=2를 설정했습니다. 기존 캐시를 사용하는 HF_HUB_OFFLINE=1 적재 재시도를 시작했습니다. 실제 모델을 대체하지 않으며 캐시 누락이면 오류로 중단합니다.
+- 기존 get_sentence_embedding_dimension의 이름 변경 FutureWarning도 관측했습니다. 실제 차원 검사 실패는 아니며 경고를 숨기지 않습니다.
+- 브라우저 도구는 연결된 브라우저가 없음을 반환했습니다. scripts/smoke_m2_ui.py로 실제 API를 쓰는 Streamlit 화면 요소 검사를 준비했고 브라우저 시각 검증과 구분합니다.
+
+### TS-015 최종 검증 결과
+
+CPU 스레드 2개와 기존 모델 오프라인 캐시를 사용한 ingest는 `Ingested 4 chunks into manuals-c567565b8404-41987ec1` 출력 후 종료 코드 0으로 성공했습니다. M2 기동과 seed도 종료 코드 0, 실제 검색 smoke와 실제 API를 사용하는 Streamlit AppTest 화면 요소 검사가 모두 통과했습니다. mode=extractive이며 생성형 LLM 검증은 아닙니다. 최초 실행과 재시도의 캐시·부하 조건이 달라 CPU 설정만의 성능 효과로 단정하지 않습니다.
+
+브라우저 미연결로 픽셀/레이아웃 검증은 미실시입니다. Streamlit use_container_width 사용 중단 예정 경고와 Sentence Transformers 메서드 이름 변경 경고가 남았습니다. 문서 수정 시 일부 patch 문맥이 일치하지 않아 실패했고 실제 파일을 읽어 필요한 부분을 다시 반영했습니다. Git diff의 저장소 미인식은 해당 실행에서 관측했으며 저장소 삭제·재초기화·업로드는 수행하지 않았습니다. 검증 명령·검색 거리 관측·재개 순서는 [M2 현황](m2-status.md)에 저장했습니다.
+
+## OpenAI 연결 준비 기록
+
+사용자 화면 두 사례에서 관련 근거 표시와 무관 질문 보류를 확인했습니다. API 연결 코드는 기존 compatible Adapter를 사용합니다. 키가 없으므로 설정 준비까지만 진행했고 실제 호출 성공으로 표시하지 않습니다. 제공자 선택은 OpenAI이며 키는 채팅·Git에 기록하지 않습니다.
+
+## OpenAI 실제 연결과 컨테이너 적용 분리
+
+- 실제 OpenAI HTTP 호출 및 검색 근거를 사용한 기존 Adapter 호출은 성공했습니다. 키를 출력하거나 커밋하지 않았습니다.
+- Docker 설정 읽기/네트워크 권한 승인 뒤에도 Docker 엔진 접근은 거부됐습니다. 실행 중인 서비스는 기존 extractive 모드이며, .env 변경만으로 실행 중인 컨테이너 설정이 갱신되지는 않습니다.
+- compatible 설정을 로컬에 저장하고 AI 서비스만 재생성하는 명령을 m2-status.md에 기록했습니다. 서버 적용 및 화면 확인은 남아 있습니다.
+
+## LLM 모드 설정 누락 재확인
+
+AI Healthy 후 실제 질문은 HTTP 200이지만 mode=extractive였습니다. 로컬 환경 파일의 정확한 LLM_MODE 항목이 없는 것을 확인했습니다. 누락 경위는 확정하지 않았습니다. 기존 치환만 수행하면 항목이 없을 때 추가되지 않는 한계가 있어, 항목이 없으면 추가하고 있으면 교체하는 방식으로 compatible 설정을 저장하고 재확인했습니다. 컨테이너 재생성 후 mode=compatible 재검증이 필요합니다. 별도 화면의 오류 응답 원인은 이 확인만으로 확정하지 않습니다.
+
+### LLM 모드 누락 해결 검증
+
+누락된 LLM_MODE를 compatible로 추가하고 사용자가 AI 컨테이너를 재생성한 뒤 실제 API가 HTTP 200과 mode=compatible 및 근거 기반 한국어 답변을 반환했습니다. 설정 누락 문제의 해결을 확인했습니다. 키 값은 기록하지 않았습니다.

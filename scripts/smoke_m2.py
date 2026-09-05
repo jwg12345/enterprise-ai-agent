@@ -1,4 +1,4 @@
-"""M2 적재/기동 후 실제 모델·Chroma·LangGraph를 함께 검사합니다. 아직 실행하지 않았습니다."""
+"""M2 적재/기동 후 실제 모델·Chroma·LangGraph를 함께 검사합니다."""
 import json
 from pathlib import Path
 import urllib.request

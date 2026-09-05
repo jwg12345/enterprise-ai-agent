@@ -6,6 +6,8 @@ services:
       dockerfile: ai-service/Dockerfile.m2
     environment:
       M2_ENABLED: "true"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
       EMBEDDING_REVISION: ${EMBEDDING_REVISION:?Set a fixed BGE-M3 commit SHA}
       CHROMA_HOST: chroma
       CHROMA_PORT: "8000"
@@ -35,6 +37,8 @@ services:
       HF_HOME: /model-cache
       INDEX_MANIFEST: /index/active.json
       MANUAL_DIR: /manuals
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
     volumes:
       - model-cache:/model-cache
       - rag-index:/index
