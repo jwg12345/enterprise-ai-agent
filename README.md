@@ -1,5 +1,7 @@
 # 기업 업무 대응 AI Agent
 
+[![Project checks](https://github.com/jwg12345/enterprise-ai-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/jwg12345/enterprise-ai-agent/actions/workflows/ci.yml)
+
 운영 매뉴얼과 장애 기록으로 후속 점검 초안을 만들고, **사람의 승인 후 Spring API가 티켓을 생성하는 로컬 시연 프로젝트**입니다. 가상 회사의 합성 데이터만 사용합니다.
 
 Streamlit · FastAPI · LangGraph · BGE-M3/ChromaDB · Spring Boot · PostgreSQL · Docker Compose
@@ -75,4 +77,4 @@ docker compose -f compose.yaml -f compose.m2.yaml -f compose.m3-app.yaml --profi
 - [프로젝트 경험 정리](docs/project-story.md)
 - [누적 개선 기록](docs/troubleshooting.md)
 
-설계 문서의 목표와 실제 구현은 다를 수 있습니다. 현재 상태는 최종 정리 문서를 우선합니다. 과거 README는 [개발 기록](docs/history/README-before-finalization.txt)에 보존했습니다. CI 배지는 원격 통과 확인 전에는 게시하지 않습니다.
+설계 문서의 목표와 실제 구현은 다를 수 있습니다. 현재 상태는 최종 정리 문서를 우선합니다. 과거 README는 [개발 기록](docs/history/README-before-finalization.txt)에 보존했습니다. [c0aaaf3 커밋의 원격 CI](https://github.com/jwg12345/enterprise-ai-agent/actions/runs/34174561117)에서 Python·Java·기본 Compose 검사가 통과했습니다. 실제 LLM/RAG 검증은 위 로컬 근거와 구분합니다.

@@ -417,3 +417,9 @@ AI Healthy 후 실제 질문은 HTTP 200이지만 mode=extractive였습니다. �
 - 별도 제약: 브라우저 자동화 초기화가 `apply deny-read ACLs` 오류로 실패하여 새 시연 캡처는 보류했습니다. AI 173건·UI 11건 및 문서 검사는 통과했습니다.
 
 - 게시 단계: HTTPS 조회 복구 후에도 Git credential helper로 인증하지 못했습니다. helper를 제외한 비대화형 검사에서 `could not read Username`을 확인했고, 연결 앱의 Contents 쓰기도 403으로 거절됐습니다. 파일 생성은 성공하지 않았으며 사용자 환경 Git 인증 후 push가 필요합니다.
+
+### 사용자 환경에서 게시 완료
+
+- 사용자 PowerShell에서 폴더 소유자 차이로 Git `dubious ownership`이 발생했습니다. 해당 프로젝트 경로만 safe.directory에 등록한 뒤 push가 성공했습니다.
+- 커밋 c0aaaf3의 Project checks와 Documentation checks 모두 success임을 GitHub API로 확인했습니다. 명령줄 인증 실패로 남겼던 게시 보류 상태는 해소됐습니다.
+- 화면 캡처 도구는 재시도에서도 초기화 ACL 오류가 지속됩니다. 새 이미지는 생성하지 않았습니다.

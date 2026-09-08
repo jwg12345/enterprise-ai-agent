@@ -8,7 +8,7 @@
 - [x] 공개용 README·실행 안내·검증 범위 및 한계 정리
 - [x] 최소 로컬 검사·비밀 파일 확인 결과 확정
 - [ ] 실제 화면 캡처 정리: 브라우저 자동화 ACL 오류로 보류, 시연 절차는 문서화
-- [ ] GitHub 업로드 및 해당 커밋의 Actions 결과 확인
+- [x] GitHub 업로드 및 c0aaaf3 커밋의 Actions 결과 확인: Project checks·Documentation checks 모두 success
 - [x] 프로젝트 경험 문서를 설계 판단·문제 해결·검증 근거 중심으로 정리
 
 ## 이번에 하지 않는 작업

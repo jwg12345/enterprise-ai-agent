@@ -15,18 +15,23 @@
 - 초기 임베딩 41.6초 및 timeout 사례를 단계 로그로 분석했습니다. 워밍업 적용 후 관측한 8건은 첫 요청 11.2초·이후 1.9~7.3초입니다. 실험 조건을 통제하지 않아 개선율·p95·SLA를 주장하지 않습니다.
 - 별도 사람의 의미 평가, 장기 안정성, 부하·새 환경 전체 재현은 미실시/이번 범위 제외입니다.
 
-## 배포 전 마무리
-
-로컬 최소 검사·비밀 확인, 캡처 및 원격 CI 결과는 실행 후 이 문서에 추가합니다. GitHub 원격 주소는 jwg12345/enterprise-ai-agent이며 공개 저장소입니다. 사용자 요청에 따라 최종 정리 후 업로드를 진행합니다. 성과는 확인된 결과로만 표현합니다.
-
 ## 최종 로컬 검사 (2026-09-08)
 
 - AI 단위·그래프 검사: 173 passed, 1 dependency deprecation warning.
 - Streamlit UI 검사: 11 passed, 711 dependency deprecation warnings.
 - 문서 검사: 38 Markdown files 통과. 공개 후보 파일의 실제 환경 비밀값·키 패턴 및 대용량 파일 검사에서 일치 없음. `.env`는 Git 비추적 상태.
 - 브라우저 자동화 실행이 로컬 ACL 오류로 차단되어 새 화면 캡처는 미실시. 기존 시연 절차와 사용자 확인 결과를 유지합니다.
-- GitHub 게시와 원격 CI 결과는 별도 확인합니다.
+- GitHub 게시 및 원격 CI 통과를 확인했습니다. 아래 링크는 검증한 커밋의 실행입니다.
 
-## GitHub 게시 상태
+## GitHub 게시 및 CI 확인
 
-2026-09-08 로컬 커밋 완료. 원격 저장소 조회는 가능하지만 Git 명령줄 인증 정보가 없고, 연결된 GitHub 앱의 파일 생성 요청도 HTTP 403 `Resource not accessible by integration`으로 거절됐습니다. 원격 업로드 및 Actions 검증은 미완료이며, 사용자 환경에서 GitHub 인증 후 push가 필요합니다.
+2026-09-08 사용자 PowerShell에서 main 브랜치 업로드를 완료했습니다. 커밋 `c0aaaf3a1d04693a95733296be956486695e27ac` 기준 다음 실행을 GitHub API로 확인했습니다.
+
+- [Project checks](https://github.com/jwg12345/enterprise-ai-agent/actions/runs/34174561117): Python·AI·UI 테스트와 정적 검사, Java 통합 검사, 기본 Docker Compose 기동·seed·smoke 모두 success.
+- [Documentation checks](https://github.com/jwg12345/enterprise-ai-agent/actions/runs/34174561010): 문서·샘플 데이터 검사 success.
+
+기본 Compose CI 통과는 실제 BGE-M3/LLM 전체 실행 검증을 의미하지 않습니다. 실제 검색·생성·복구 근거는 기존 로컬 결과를 참고합니다. 초기 인증 문제는 해결 과정으로 troubleshooting 문서에 보존합니다.
+
+## 남은 시연 자료
+
+브라우저 자동화를 다시 시도했으나 초기화 단계의 `apply deny-read ACLs` 오류가 지속됐습니다. 새 캡처는 만들지 못했으며 실제 화면 이미지가 추가되기 전까지 시연 절차만 제공합니다. 기능 확장이나 성능 재검사는 진행하지 않습니다.
