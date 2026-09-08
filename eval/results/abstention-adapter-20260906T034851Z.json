@@ -1,0 +1,31 @@
+{
+  "run_id": "20260906T034851Z",
+  "scope": "host adapter with real provider and retrieved P1 evidence; not deployed API regression",
+  "prompt_version": "m2-v2",
+  "cases": [
+    {
+      "query": "프로덕션 Load Balancer의 실제 IP 주소는?",
+      "abstain": true,
+      "answer": "제공된 문서에는 프로덕션 Load Balancer의 실제 IP 주소에 대한 정보가 없습니다.",
+      "source_ids": [
+        "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af"
+      ]
+    },
+    {
+      "query": "P1 네트워크 장애의 SLA 복구 제한 시간은 몇 분인가요?",
+      "abstain": true,
+      "answer": "제공된 문서에는 P1 네트워크 장애의 SLA 복구 제한 시간에 대한 정보가 없습니다.",
+      "source_ids": [
+        "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af"
+      ]
+    },
+    {
+      "query": "지난주 실제 P1 장애 발생 건수는 몇 건인가요?",
+      "abstain": true,
+      "answer": "제공된 문서에는 지난주 실제 P1 장애 발생 건수에 대한 정보가 없습니다.",
+      "source_ids": [
+        "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af"
+      ]
+    }
+  ]
+}

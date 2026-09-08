@@ -1,0 +1,23 @@
+{
+  "request_key": "09454375-2641-4626-a1e3-d61f69fd1f17",
+  "passed": true,
+  "scope": "real Spring/PostgreSQL; test transport drops committed response; separate recovery process",
+  "run_id": "2b960590-d78e-4e39-969d-eccf17f8917a",
+  "approval_id": "c8058675-bbb6-44c3-af59-a83326fc95a1",
+  "fault_injected": true,
+  "committed_ticket_id": "a4371d65-37c4-4053-9ce0-2093ff80cef6",
+  "lost_key": "ticket:c8058675-bbb6-44c3-af59-a83326fc95a1",
+  "client_error": "RECONCILING",
+  "pending_nodes_after_loss": [
+    "execute"
+  ],
+  "inject_complete": true,
+  "resume_complete": true,
+  "recovery_ticket_keys": [
+    "ticket:c8058675-bbb6-44c3-af59-a83326fc95a1"
+  ],
+  "database_counts": {
+    "tickets": 1,
+    "ticket_audits": 1
+  }
+}

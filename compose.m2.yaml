@@ -6,6 +6,7 @@ services:
       dockerfile: ai-service/Dockerfile.m2
     environment:
       M2_ENABLED: "true"
+      RAG_WARMUP: "true"
       OMP_NUM_THREADS: "2"
       MKL_NUM_THREADS: "2"
       EMBEDDING_REVISION: ${EMBEDDING_REVISION:?Set a fixed BGE-M3 commit SHA}
@@ -18,6 +19,7 @@ services:
       LLM_MODEL: ${LLM_MODEL:-}
       LLM_API_KEY: ${LLM_API_KEY:-}
       RAG_MAX_DISTANCE: ${RAG_MAX_DISTANCE:-0.45}
+      RAG_QUERY_PREFIX: ${RAG_QUERY_PREFIX:-}
     volumes:
       - model-cache:/model-cache
       - rag-index:/index

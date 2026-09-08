@@ -1,5 +1,31 @@
 # API 계약 초안
 
+## 자연어 초안 미리보기
+
+`POST /v1/ticket-draft-previews`: operator Bearer 인증. 요청 query(1~4000자), incident_id, incident_filters(M1 기간/페이지/분류 계약). 클라이언트 장애 사실·역할·담당팀·승인 값은 받지 않습니다. 같은 조건으로 실제 조회한 페이지 안에서 선택한 장애만 허용합니다. 없는 장애는 404, 해결된 장애는 409, 근거 부족은 200 + abstain=true + draft=null입니다. LLM 미연결 503, 검색 실패 503, 생성/출처 오류 502, 시간 초과 504입니다.
+
+성공 응답: draft(기존 Draft), citations(사용 원문), abstain, mode=llm_preview, prompt_version=ticket-draft-v1, observed_at, request_id, message. 읽기·검색·초안 생성만 수행하고 승인 원장/티켓을 등록하지 않습니다. 미리보기 검토 후 별도로 POST /v1/ticket-runs를 호출합니다. 본문에 출처 식별자가 들어가 승인된 초안 해시에 결합됩니다. 자연어 기간 추출과 대상 장애 자동 선택은 아직 지원하지 않습니다.
+
+## M3 수동 초안 영속 실행 API — 코드·모의 검사 완료, 실제 연동 대기
+
+자연어 `/v1/runs`와 구분해 `/v1/ticket-runs`를 제공합니다. 모든 호출은 서버가 매핑한 operator만 허용합니다. UI는 로컬 단일 사용자 운영자 시연 모드이며 공개 서비스 로그인 기능은 아닙니다.
+
+| 경로 | 요청/동작 |
+|---|---|
+| POST /v1/ticket-runs | draft; Idempotency-Key 필수. 서버가 UUID를 발급하고 소유자+키에 결합. 같은 키에 다른 초안은 409 |
+| GET /v1/ticket-runs | 본인 최근 20개 실행 ID·생성 시각 |
+| GET /v1/ticket-runs/{id} | 본인 실행·승인 원장 상태 조회. 티켓 생성 부작용 없음 |
+| POST /v1/ticket-runs/{id}/decisions | approval_id, decision(approve/reject). 원장 결정 후 저장된 그래프 재개 |
+| POST /v1/ticket-runs/{id}/resume | 중단된 실행 재시도. 승인 플래그를 받지 않으며 Spring 원장을 재검증 |
+
+동기 처리 성공은 200: run_id, status, approval, ticket_id. 접수 내용은 agent.ticket_runs에 먼저 저장하고 LangGraph 체크포인트를 별도 저장하므로 중간 실패 후 동일 키/실행으로 재개합니다. DB 세션 잠금으로 실행별 처리를 직렬화하고 경합은 409 RUN_BUSY입니다. 결정은 서버 원장의 동일 결정 재전송 규칙을 사용하고 티켓 쓰기는 approval_id에서 유도한 고정 키를 사용합니다. 다른 소유자의 실행은 404입니다. 원장/네트워크 오류는 성공으로 바꾸지 않으며 최근 실행 조회 후 재개합니다. 서버 재시작 시 자동 백그라운드 실행은 아직 없고 사용자가 조회·재개합니다. 승인 후 DB 원장에 EXECUTED가 있으면 그래프 체크포인트 기록이 늦어도 기존 티켓 결과를 조회할 수 있습니다.
+
+현재 초안은 운영자가 직접 작성합니다. 자연어 초안 생성·조회 결과와 답변을 묶은 최종 runs 계약은 후속 범위입니다.
+
+M3 FastAPI 중간 연결 API 추가(실행 검증 대기): `POST /v1/approvals`, `GET /v1/approvals/{id}`, `POST /v1/approvals/{id}/decision`, `POST /v1/tickets`, `GET /v1/tickets/{id}`. 아래 Business 계약과 같은 요청/응답 필드를 사용하되 Bearer 데모 인증으로 신원을 결정합니다. 쓰기는 operator만 허용하고 티켓 생성에는 Idempotency-Key가 필수입니다. 클라이언트 사용자/역할 헤더는 무시합니다. 원장 조회와 결정·티켓 생성은 별도 호출이며, 결정만으로 티켓이 생성되지 않습니다. timeout은 결과 불명으로 취급해 원장을 확인한 뒤 같은 ID/키로 재시도합니다. 자동 쓰기 재시도는 없습니다. 이 API는 영속 runs/interrupt 구현을 대신하지 않습니다.
+
+2026-09-06 구현 구분: M2 검색·생성 API는 연결했고, M3 Business 승인/티켓 API는 코드 작성·검증 대기입니다. 아래 AI runs/decisions API와 승인 UI는 아직 설계입니다. M3 첫 단계는 run_id당 불변 초안만 지원하며 버전 교체는 409 PROPOSAL_IMMUTABLE로 거절합니다. 기존 버전의 내용 변경은 409 PROPOSAL_CONFLICT입니다. 티켓 생성은 approval_id와 draft_hash만 받으며 내용은 서버 원장을 사용합니다. 기본 승인 TTL은 900초입니다. [현재 구현 범위](m3-status.md)를 우선 참고하세요.
+
 M1~M3 구현 기준입니다. M1에서는 GET /v1/incidents, GET /api/v1/incidents와 health만 구현했습니다. 나머지는 설계 계약입니다. UUID 식별자는 서버가 생성합니다. JSON은 snake_case, 시간은 ISO 8601 offset 포함 형식입니다. 모든 API는 서버에서 인증·소유권/역할을 검증합니다.
 
 ## M1 조회 프록시

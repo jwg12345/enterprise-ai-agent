@@ -1,0 +1,29 @@
+{
+  "read_only": true,
+  "health": {
+    "live": {
+      "http_status": 200,
+      "state": {
+        "status": "UP",
+        "stage": null,
+        "agent_db": null,
+        "business": null,
+        "rag": null
+      },
+      "elapsed_ms": 31
+    },
+    "ready": {
+      "http_status": 200,
+      "state": {
+        "status": "UP",
+        "stage": "M3",
+        "agent_db": "UP",
+        "business": "UP",
+        "rag": "UP"
+      },
+      "elapsed_ms": 47
+    }
+  },
+  "containers": [],
+  "docker_access": "failed"
+}

@@ -1,0 +1,131 @@
+{
+  "run_id": "20260906T032254Z",
+  "cases": [
+    {
+      "id": "rag-fixed-09",
+      "query": "후속 티켓을 실제 생성하기 전에 누구의 명시적 승인이 필요한가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 10078,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.22449675,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.32788497,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "b8ec46c8-8136-41f5-9c38-032819221509",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-14",
+      "query": "거절된 승인 초안으로 후속 티켓을 만들 수 있는지 정책을 설명해 주세요.",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 2187,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.23301035,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.33193585,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "5aed1b9b-f689-40b3-b116-f02f38993d50",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-15",
+      "query": "유효기간이 지난 승인 초안은 티켓 생성에 사용할 수 있나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1719,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.26408613,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.39846826,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "7b090b7f-1890-4f8c-9da8-1df96daa71fd",
+      "error_code": null
+    }
+  ],
+  "total": 3,
+  "completed": 3,
+  "passed": 3
+}

@@ -1,0 +1,75 @@
+{
+  "started_at": "2026-09-06T08:59:13.638296+00:00",
+  "checks": [
+    {
+      "name": "readiness",
+      "passed": true
+    },
+    {
+      "name": "synthetic incident available",
+      "passed": true
+    },
+    {
+      "name": "reject proposal",
+      "passed": true
+    },
+    {
+      "name": "reject pending write blocked",
+      "passed": true
+    },
+    {
+      "name": "reject viewer decision blocked",
+      "passed": true
+    },
+    {
+      "name": "reject decision recorded",
+      "passed": true
+    },
+    {
+      "name": "reject ticket result",
+      "passed": true
+    },
+    {
+      "name": "approve proposal",
+      "passed": true
+    },
+    {
+      "name": "approve pending write blocked",
+      "passed": true
+    },
+    {
+      "name": "approve viewer decision blocked",
+      "passed": true
+    },
+    {
+      "name": "approve decision recorded",
+      "passed": true
+    },
+    {
+      "name": "approve ticket result",
+      "passed": true
+    },
+    {
+      "name": "same key returns same ticket",
+      "passed": true
+    },
+    {
+      "name": "executed ledger points to ticket",
+      "passed": true
+    },
+    {
+      "name": "ticket read",
+      "passed": true
+    }
+  ],
+  "resources": {
+    "reject_run_id": "aa9e4cb9-ec95-4041-94fc-68705cd36861",
+    "reject_approval_id": "79e17a2e-d8a4-44a8-b5f9-94a5cda96170",
+    "reject_idempotency_key": "m3-smoke-aa9e4cb9-ec95-4041-94fc-68705cd36861",
+    "approve_run_id": "4eefc807-5f36-4034-a822-98496d6ad905",
+    "approve_approval_id": "a461a351-ee23-4646-a79f-be934f218b90",
+    "approve_idempotency_key": "m3-smoke-4eefc807-5f36-4034-a822-98496d6ad905",
+    "ticket_id": "7ad13068-f843-4578-8a10-422696dc2834"
+  },
+  "passed": true
+}

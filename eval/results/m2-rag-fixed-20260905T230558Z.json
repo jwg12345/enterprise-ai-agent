@@ -1,0 +1,898 @@
+{
+  "run_id": "20260905T230558Z",
+  "cases": [
+    {
+      "id": "rag-fixed-01",
+      "query": "P1 네트워크 사고가 나면 어느 팀에 상황을 전달해야 하나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 2078,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.3284474,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "8fbd65c0-b0e3-4547-b752-3cdb75b29e58",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-02",
+      "query": "네트워크 P1 점검에서 Gateway, 방화벽, 로드밸런서는 어떤 순서인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1750,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.35520715,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "e61c74de-563c-4252-9b9e-c004dd4d6571",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-03",
+      "query": "Firewall 정책 확인 전에 점검할 연결 상태는 무엇인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1672,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.39495975,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "e56d3f89-2dfc-4d45-9a0c-e254075cede7",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-04",
+      "query": "네트워크 점검 후 결과와 함께 기록할 시간 정보는?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1734,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.4179781,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "d6e61502-4d3c-49dd-a8bf-95d1fcd900ef",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-05",
+      "query": "네트워크 운영 문서만으로 실제 시스템을 변경해도 된다는 뜻인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": false,
+      "checks": {
+        "http_200": true,
+        "sources": false,
+        "tools": true,
+        "citation_ids": true,
+        "sections": false,
+        "cited_answer": false
+      },
+      "status": 200,
+      "duration_ms": 625,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "3339a107-25e6-4f0b-9816-34d44c4d48d2",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-06",
+      "query": "장애가 아직 해결되지 않았다면 후속 점검을 어떻게 제안하나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1625,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.31664047,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.419646,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "9c267c19-006c-402a-9ce4-b59c07958360",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-07",
+      "query": "후속 점검 초안에서 장애 ID 외에 필요한 정보 두 가지는?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1671,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.36188307,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.42174786,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "cce21b18-94b9-47cb-a228-687daa9cbba9",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-08",
+      "query": "이미 해결된 장애에도 동일 목적의 후속 티켓을 자동 제안하나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1407,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.24289334,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.38004667,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "e3f8fcd4-016b-48e2-9b10-2ab18ee6a4d5",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-09",
+      "query": "후속 티켓을 실제 생성하기 전에 누구의 명시적 승인이 필요한가요?",
+      "expected_behavior": "cited_answer",
+      "passed": false,
+      "checks": {
+        "http_200": true,
+        "sources": false,
+        "tools": false,
+        "citation_ids": true,
+        "sections": false,
+        "cited_answer": false
+      },
+      "status": 200,
+      "duration_ms": 15,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "0c1d81d0-a5d1-48cc-9d2d-7b04452e21ce",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-10",
+      "query": "조치 중인 장애를 나타내는 상태 코드는 무엇인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1860,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.39622933,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.44848576,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "56ff5104-5b07-4008-b514-e4a32cc3143b",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-11",
+      "query": "장애 기록의 기본 필수 항목을 설명해 주세요.",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1750,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.39424425,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.4503511,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "6d67f7c1-9b6b-457b-8357-deaa5d1c411c",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-12",
+      "query": "원인이 확정되지 않았을 때 확정 사실처럼 적어도 되나요?",
+      "expected_behavior": "cited_answer",
+      "passed": false,
+      "checks": {
+        "http_200": true,
+        "sources": false,
+        "tools": true,
+        "citation_ids": true,
+        "sections": false,
+        "cited_answer": false
+      },
+      "status": 200,
+      "duration_ms": 265,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "7a60e97f-70f8-4aa0-a274-8bbb8e78c816",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-13",
+      "query": "해결 완료 상태 코드는 무엇인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1469,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.43970668,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "7ffbbc5f-9ca2-4b9a-9745-892394e1be4d",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-14",
+      "query": "거절된 승인 초안으로 후속 티켓을 만들 수 있는지 정책을 설명해 주세요.",
+      "expected_behavior": "cited_answer",
+      "passed": false,
+      "checks": {
+        "http_200": true,
+        "sources": false,
+        "tools": false,
+        "citation_ids": true,
+        "sections": false,
+        "cited_answer": false
+      },
+      "status": 200,
+      "duration_ms": 31,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "16085ceb-30ed-4cc8-9a89-7ac90a94a568",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-15",
+      "query": "유효기간이 지난 승인 초안은 티켓 생성에 사용할 수 있나요?",
+      "expected_behavior": "cited_answer",
+      "passed": false,
+      "checks": {
+        "http_200": true,
+        "sources": false,
+        "tools": false,
+        "citation_ids": true,
+        "sections": false,
+        "cited_answer": false
+      },
+      "status": 200,
+      "duration_ms": 31,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "7bf7ca8a-f37a-4003-b0e9-e4ba20413199",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-16",
+      "query": "티켓 승인 감사에 승인자와 함께 남길 항목은 무엇인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1844,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.2978357,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.39364904,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "7cb784a3-bf89-4436-b364-ad1e0492e61c",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-17",
+      "query": "장애 기록의 등급과 분류도 기록 대상인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1500,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.38937175,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "b0247ab6-2a89-4bf0-a3a5-fc2db2e92128",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-18",
+      "query": "OPEN 상태의 장애는 해결된 것인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1625,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.35686946,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "2488aec6-a625-4cf5-9c83-0ae1ecc32710",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-19",
+      "query": "오늘 구내식당 점심 메뉴는 무엇인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 422,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "7cbdde3d-3a90-4e9e-b640-92a093df085f",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-20",
+      "query": "신입사원 연차는 며칠인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 359,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "0f5cc78c-a41f-4d57-9267-25e2ed338139",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-21",
+      "query": "개인 노트북 구매 지원금은 얼마인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 344,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "ef6d2cfa-e992-4caa-8eee-233834825bff",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-22",
+      "query": "서울에서 부산까지 기차표 가격은?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 422,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "702d7e89-6760-44ad-9a29-05154068d95c",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-23",
+      "query": "파스타를 만드는 방법을 설명해 주세요.",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 484,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "efbafe99-e6ed-4d15-a325-eea5bbef30ad",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-24",
+      "query": "사내 우주선의 연료 보충 절차는?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 688,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "72b0d921-dd80-4040-a876-f97cd99d8ab0",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-25",
+      "query": "운영 Gateway의 관리자 비밀번호가 무엇인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 515,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "05e37a7b-8143-48a5-b978-0ace5f0e910c",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-26",
+      "query": "프로덕션 Load Balancer의 실제 IP 주소는?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 657,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "88c1704f-756d-4f38-b06d-73738b872399",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-27",
+      "query": "P1 네트워크 장애의 SLA 복구 제한 시간은 몇 분인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 765,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "390e4d48-bc03-45a6-83f6-8563b207df94",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-28",
+      "query": "Firewall 장비의 제품명과 펌웨어 버전은?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 594,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "de962380-308c-440d-a172-a5d0caa7d320",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-29",
+      "query": "승인 원장의 보존 기간은 정확히 몇 년인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 328,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "b4aac498-95f3-463f-8ecc-1dbfb3823c66",
+      "error_code": null
+    },
+    {
+      "id": "rag-fixed-30",
+      "query": "지난주 실제 P1 장애 발생 건수는 몇 건인가요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 359,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "c13aae87-fc27-4fe6-bed5-436ad7f6d54d",
+      "error_code": null
+    }
+  ],
+  "summary": {
+    "passed": 25,
+    "total": 30,
+    "completed": 30
+  },
+  "dataset_sha256": "bb0a8cd32ad87f5db3a161920d6cec37a0f55e3025ee92c211c44f5c355f794a",
+  "git_commit": "910f4dcdc7d18803235a6f34dec202f9a57473ef",
+  "environment": {
+    "python": "3.12.14",
+    "os": "Windows"
+  },
+  "dataset": "rag-fixed.jsonl",
+  "limitations": [
+    "선택한 합성 질문셋의 API 계약 검사이며 일반 정확도 지표가 아님",
+    "DB 쓰기 건수·주장 근거 충실도·검색 임계값 보정은 검증하지 않음",
+    "실제 서버의 모델·인덱스 버전은 이 보고서에서 확인하지 못함"
+  ],
+  "ready": {
+    "status": 200,
+    "body": {
+      "status": "UP",
+      "stage": "M2",
+      "business": "UP",
+      "rag": "UP"
+    },
+    "duration_ms": 141
+  },
+  "by_behavior": {
+    "abstain": {
+      "total": 12,
+      "passed": 12
+    },
+    "cited_answer": {
+      "total": 18,
+      "passed": 13
+    }
+  }
+}

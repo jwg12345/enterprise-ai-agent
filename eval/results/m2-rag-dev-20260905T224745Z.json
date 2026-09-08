@@ -1,0 +1,334 @@
+{
+  "run_id": "20260905T224745Z",
+  "cases": [
+    {
+      "id": "rag-dev-01",
+      "query": "P1 네트워크 장애 대응 시 먼저 누구에게 공유하나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 12375,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.33275902,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "0f31fcb5-0761-40ed-aa48-c34672e1eb02",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-02",
+      "query": "Gateway 다음에 확인할 대상은 무엇인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": false,
+      "checks": {
+        "http_200": true,
+        "sources": false,
+        "tools": true,
+        "citation_ids": true,
+        "sections": false,
+        "cited_answer": false
+      },
+      "status": 200,
+      "duration_ms": 922,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "1149f03b-d681-419f-88d8-be476169e1ac",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-03",
+      "query": "미해결 장애의 후속 티켓 초안에 어떤 정보를 적나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 2422,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.24048862,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.35143596,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "e4abbd0f-74f7-4e64-97d3-bcffc8f603f4",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-04",
+      "query": "장애 상태 OPEN과 RESOLVED는 각각 무슨 뜻인가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 2141,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.31253535,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "ef15b2dd-e2ff-45c0-b8e3-aa3016cfda0d",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-05",
+      "query": "확인되지 않은 장애 원인은 어떻게 기록하나요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 2047,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy",
+        "network-operations"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.3599324,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.40360454,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "13777bba-40b8-41d1-90c4-9e96e0d3fcc6",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-06",
+      "query": "승인 감사 기록에는 어떤 항목이 필요한가요?",
+      "expected_behavior": "cited_answer",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "sections": true,
+        "cited_answer": true
+      },
+      "status": 200,
+      "duration_ms": 1687,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": false,
+      "sources": [
+        "incident-policy"
+      ],
+      "retrieved": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.37534457,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ],
+      "request_id": "729f1b89-0a25-4280-94ef-3624f1bea878",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-07",
+      "query": "김치찌개 재료와 조리법을 알려줘",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 344,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "f175241f-a71d-47b7-875e-b0bfb3b2cb03",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-08",
+      "query": "네트워크 장애 담당자의 개인 전화번호는?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 312,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "e570f684-57ea-4328-9140-ac0b9e7159be",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-09",
+      "query": "Gateway를 재시작하는 정확한 셸 명령은?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 360,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "499b2fb0-c558-4fe1-94e0-9beb256a221a",
+      "error_code": null
+    },
+    {
+      "id": "rag-dev-10",
+      "query": "휴가 신청은 어떤 시스템에서 하나요?",
+      "expected_behavior": "abstain",
+      "passed": true,
+      "checks": {
+        "http_200": true,
+        "sources": true,
+        "tools": true,
+        "citation_ids": true,
+        "abstain": true
+      },
+      "status": 200,
+      "duration_ms": 312,
+      "mode": "compatible",
+      "prompt_version": "m2-v1",
+      "abstain": true,
+      "sources": [],
+      "retrieved": [],
+      "request_id": "a6d0806f-34e4-4b7e-b2eb-3dea0e97e04b",
+      "error_code": null
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "total": 10,
+    "completed": 10
+  },
+  "dataset_sha256": "44953f5efa4e25f2ed3adc6df9015d66fa0ca0e8fac1e30856ea9e1c2b4117b9",
+  "git_commit": "910f4dcdc7d18803235a6f34dec202f9a57473ef",
+  "environment": {
+    "python": "3.12.14",
+    "os": "Windows"
+  },
+  "dataset": "rag-dev.jsonl",
+  "limitations": [
+    "선택한 합성 질문셋의 API 계약 검사이며 일반 정확도 지표가 아님",
+    "DB 쓰기 건수·주장 근거 충실도·검색 임계값 보정은 검증하지 않음",
+    "실제 서버의 모델·인덱스 버전은 이 보고서에서 확인하지 못함"
+  ],
+  "ready": {
+    "status": 200,
+    "body": {
+      "status": "UP",
+      "stage": "M2",
+      "business": "UP",
+      "rag": "UP"
+    },
+    "duration_ms": 109
+  },
+  "by_behavior": {
+    "abstain": {
+      "total": 4,
+      "passed": 4
+    },
+    "cited_answer": {
+      "total": 6,
+      "passed": 5
+    }
+  }
+}

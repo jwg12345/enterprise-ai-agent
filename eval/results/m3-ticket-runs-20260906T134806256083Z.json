@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "name": "wait for readiness",
+      "passed": true
+    },
+    {
+      "name": "reject restore",
+      "passed": true
+    },
+    {
+      "name": "reject decide",
+      "passed": true
+    },
+    {
+      "name": "reject decide ticket",
+      "passed": true
+    },
+    {
+      "name": "approve restore",
+      "passed": true
+    },
+    {
+      "name": "approve decide",
+      "passed": true
+    },
+    {
+      "name": "approve decide ticket",
+      "passed": true
+    },
+    {
+      "name": "concurrent duplicate decisions",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "decision": "reject",
+      "run_id": "adbb3c66-69b5-45c7-a896-7b3372b860e3",
+      "approval_id": "90c46bff-6a5b-435f-956e-23adf9926bd4",
+      "key": "5ac5b2c4-5362-4eb3-8b25-1795efb7ac26",
+      "ticket_id": null
+    },
+    {
+      "decision": "approve",
+      "run_id": "fc7106c9-5213-4274-8667-436cde1007b9",
+      "approval_id": "1dfd60c3-b545-4047-9176-dd70e7295932",
+      "key": "165018ff-241a-40bc-b314-bacda83bfee7",
+      "ticket_id": "3e7881cc-60e2-4bfd-9b73-4b36d0c13234"
+    }
+  ],
+  "passed": true,
+  "resumed_from": "m3-ticket-runs-20260906T134539158077Z.json",
+  "restart_reused": true
+}

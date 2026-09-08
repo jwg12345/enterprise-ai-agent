@@ -1,0 +1,4 @@
+# M2와 함께 설치하는 PostgreSQL 체크포인트 추가 의존성.
+langgraph==1.2.11
+langgraph-checkpoint-postgres==3.1.2
+psycopg[binary]>=3.2

@@ -1,0 +1,265 @@
+{
+  "question_count": 1,
+  "query": "장애 상태 IN_PROGRESS와 RESOLVED의 의미는 어떻게 다른가요?",
+  "baseline": {
+    "process": {
+      "VmHWM": "1009036 kB",
+      "VmRSS": "955296 kB",
+      "VmSwap": "128 kB",
+      "Threads": "10"
+    },
+    "vm": {
+      "MemTotal": "3887328 kB",
+      "MemAvailable": "1792580 kB",
+      "SwapTotal": "1048576 kB",
+      "SwapFree": "883764 kB"
+    },
+    "stats": {
+      "CPUPerc": "0.17%",
+      "MemUsage": "938MiB / 3.707GiB",
+      "MemPerc": "24.71%",
+      "PIDs": "10"
+    }
+  },
+  "samples": [
+    {
+      "process": {
+        "VmHWM": "1009036 kB",
+        "VmRSS": "1000864 kB",
+        "VmSwap": "128 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1818832 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "883764 kB"
+      },
+      "stats": {
+        "CPUPerc": "190.64%",
+        "MemUsage": "944.2MiB / 3.707GiB",
+        "MemPerc": "24.87%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 4219
+    },
+    {
+      "process": {
+        "VmHWM": "1099936 kB",
+        "VmRSS": "1099936 kB",
+        "VmSwap": "128 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1779160 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "883764 kB"
+      },
+      "stats": {
+        "CPUPerc": "254.44%",
+        "MemUsage": "947.1MiB / 3.707GiB",
+        "MemPerc": "24.95%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 8391
+    },
+    {
+      "process": {
+        "VmHWM": "1210656 kB",
+        "VmRSS": "1210656 kB",
+        "VmSwap": "128 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1788980 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "883764 kB"
+      },
+      "stats": {
+        "CPUPerc": "269.67%",
+        "MemUsage": "949.9MiB / 3.707GiB",
+        "MemPerc": "25.02%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 13610
+    },
+    {
+      "process": {
+        "VmHWM": "1269536 kB",
+        "VmRSS": "1269536 kB",
+        "VmSwap": "128 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1793668 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "883764 kB"
+      },
+      "stats": {
+        "CPUPerc": "195.64%",
+        "MemUsage": "954.9MiB / 3.707GiB",
+        "MemPerc": "25.15%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 17469
+    },
+    {
+      "process": {
+        "VmHWM": "1394592 kB",
+        "VmRSS": "1394592 kB",
+        "VmSwap": "128 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1774028 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "883508 kB"
+      },
+      "stats": {
+        "CPUPerc": "210.29%",
+        "MemUsage": "958.2MiB / 3.707GiB",
+        "MemPerc": "25.24%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 22469
+    },
+    {
+      "process": {
+        "VmHWM": "1566624 kB",
+        "VmRSS": "1566624 kB",
+        "VmSwap": "640 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1805844 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "879668 kB"
+      },
+      "stats": {
+        "CPUPerc": "265.25%",
+        "MemUsage": "985.9MiB / 3.707GiB",
+        "MemPerc": "25.97%",
+        "PIDs": "23"
+      },
+      "elapsed_ms": 28344
+    },
+    {
+      "process": {
+        "VmHWM": "1751072 kB",
+        "VmRSS": "1751072 kB",
+        "VmSwap": "2944 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1806432 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "877108 kB"
+      },
+      "stats": {
+        "CPUPerc": "180.15%",
+        "MemUsage": "1.016GiB / 3.707GiB",
+        "MemPerc": "27.41%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 33250
+    },
+    {
+      "process": {
+        "VmHWM": "1898016 kB",
+        "VmRSS": "1898016 kB",
+        "VmSwap": "4224 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1811420 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "874804 kB"
+      },
+      "stats": {
+        "CPUPerc": "193.29%",
+        "MemUsage": "1.056GiB / 3.707GiB",
+        "MemPerc": "28.48%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 37625
+    },
+    {
+      "process": {
+        "VmHWM": "2062240 kB",
+        "VmRSS": "2062240 kB",
+        "VmSwap": "4864 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1890904 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "871248 kB"
+      },
+      "stats": {
+        "CPUPerc": "149.85%",
+        "MemUsage": "1.099GiB / 3.707GiB",
+        "MemPerc": "29.65%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 42485
+    },
+    {
+      "process": {
+        "VmHWM": "2120608 kB",
+        "VmRSS": "2103840 kB",
+        "VmSwap": "21376 kB",
+        "Threads": "22"
+      },
+      "vm": {
+        "MemTotal": "3887328 kB",
+        "MemAvailable": "1825332 kB",
+        "SwapTotal": "1048576 kB",
+        "SwapFree": "853080 kB"
+      },
+      "stats": {
+        "CPUPerc": "0.17%",
+        "MemUsage": "1.072GiB / 3.707GiB",
+        "MemPerc": "28.92%",
+        "PIDs": "22"
+      },
+      "elapsed_ms": 46235
+    }
+  ],
+  "response": {
+    "http_status": 200,
+    "request_id": "efc83290-157e-48f7-8598-58830302681b",
+    "retrieval_ms": [
+      41769
+    ],
+    "elapsed_ms": 45031
+  },
+  "request_finished": true,
+  "after": {
+    "process": {
+      "VmHWM": "2120608 kB",
+      "VmRSS": "2103840 kB",
+      "VmSwap": "21376 kB",
+      "Threads": "22"
+    },
+    "vm": {
+      "MemTotal": "3887328 kB",
+      "MemAvailable": "1818300 kB",
+      "SwapTotal": "1048576 kB",
+      "SwapFree": "853080 kB"
+    },
+    "stats": {
+      "CPUPerc": "66.47%",
+      "MemUsage": "1.046GiB / 3.707GiB",
+      "MemPerc": "28.23%",
+      "PIDs": "22"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# 현재 AI 이미지를 사용하는 일회성 검사. 모델 로딩과 운영 AI 재시작은 없습니다.
+services:
+  response-loss-check:
+    profiles: ["tools"]
+    image: enterprise-ai-agent-ai
+    pull_policy: never
+    entrypoint: ["/workspace/.venv/bin/python", "/checks/response_loss_worker.py"]
+    environment:
+      PYTHONPATH: /workspace
+      BUSINESS_API_URL: http://business:8080
+      BUSINESS_SERVICE_TOKEN: ${BUSINESS_SERVICE_TOKEN:?Run scripts/init_env.py}
+      AGENT_DB_HOST: postgres
+      AGENT_DB_PASSWORD: ${AGENT_DB_PASSWORD:?Run scripts/init_env.py}
+    volumes:
+      - ./scripts:/checks:ro
+      - ./eval/results:/results

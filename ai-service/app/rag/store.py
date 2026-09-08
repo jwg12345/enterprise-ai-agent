@@ -1,9 +1,12 @@
 import hashlib
 import json
+import logging
 import os
 import re
 import threading
+import time
 import uuid
+from contextlib import contextmanager
 from pathlib import Path
 
 
@@ -11,11 +14,28 @@ class RagUnavailable(Exception):
     pass
 
 
+@contextmanager
+def measured_phase(operation_id, phase):
+    logger = logging.getLogger("enterprise.ai")
+    base = {"event": "rag_phase", "operation_id": operation_id, "phase": phase}
+    started = time.monotonic()
+    logger.info(json.dumps({**base, "state": "started"}))
+    state = "completed"
+    try:
+        yield
+    except BaseException:
+        state = "failed"
+        raise
+    finally:
+        logger.info(json.dumps({**base, "state": state, "duration_ms": round((time.monotonic()-started)*1000)}))
+
+
 class RagStore:
     """서빙에서는 모델을 다운로드하지 않으며 완성된 인덱스만 사용합니다."""
-    def __init__(self, model, client, revision: str, manifest: Path, max_distance: float):
+    def __init__(self, model, client, revision: str, manifest: Path, max_distance: float, query_prefix: str = ""):
         self.model, self.client, self.revision = model, client, revision
         self.manifest, self.max_distance = manifest, max_distance
+        self.query_prefix = query_prefix
         self.lock = threading.Lock()
 
     @classmethod
@@ -40,7 +60,8 @@ class RagStore:
         threshold = float(os.environ.get("RAG_MAX_DISTANCE", "0.45"))
         if not 0 <= threshold <= 2:
             raise RagUnavailable("Invalid cosine distance threshold")
-        return cls(model, client, revision, Path(os.environ.get("INDEX_MANIFEST", "/index/active.json")), threshold)
+        return cls(model, client, revision, Path(os.environ.get("INDEX_MANIFEST", "/index/active.json")), threshold,
+                   os.environ.get("RAG_QUERY_PREFIX", ""))
 
     def active(self):
         try:
@@ -71,11 +92,15 @@ class RagStore:
         if not self.lock.acquire(blocking=False):
             raise RagUnavailable("검색 작업 중입니다. 잠시 후 다시 시도하세요.")
         try:
-            collection, manifest = self.active()
-            vector = self.model.encode([query], normalize_embeddings=True).tolist()
-            found = collection.query(query_embeddings=vector, n_results=min(5, manifest["count"]),
-                                     where={f"allowed_{role}": True},
-                                     include=["documents", "metadatas", "distances"])
+            operation_id = str(uuid.uuid4())
+            with measured_phase(operation_id, "index_check"):
+                collection, manifest = self.active()
+            with measured_phase(operation_id, "embedding"):
+                vector = self.model.encode([self.query_prefix + query], normalize_embeddings=True).tolist()
+            with measured_phase(operation_id, "vector_search"):
+                found = collection.query(query_embeddings=vector, n_results=min(5, manifest["count"]),
+                                         where={f"allowed_{role}": True},
+                                         include=["documents", "metadatas", "distances"])
             citations = []
             for cid, text, metadata, distance in zip(
                 found["ids"][0], found["documents"][0], found["metadatas"][0], found["distances"][0], strict=True

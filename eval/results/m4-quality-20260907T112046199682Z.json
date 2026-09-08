@@ -1,0 +1,426 @@
+{
+  "dataset_sha256": "faff11f87036542de378953b8f3744e4d75ad6de4cfb69024cb42706cb842745",
+  "dataset": "m4-acceptance.jsonl",
+  "client_timeout_seconds": 65,
+  "evaluation_role": "regression",
+  "planned": 8,
+  "cases": [
+    {
+      "id": "m4-new-01",
+      "kind": "answer",
+      "query": "장애 상태 IN_PROGRESS와 RESOLVED의 의미는 어떻게 다른가요?",
+      "expected": "answer",
+      "review": "각각 조치 중과 해결 완료. 해결 시각이나 원인까지 추측하지 않음.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 12141,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true,
+        "evidence_present": true,
+        "answer_text": true,
+        "citation_ids": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "answer": "장애 상태 IN_PROGRESS는 조치 중인 상태를 의미하며, RESOLVED는 해결이 완료된 상태를 의미합니다.",
+        "citations": [
+          {
+            "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+            "text": "OPEN은 미해결, IN_PROGRESS는 조치 중, RESOLVED는 해결 완료입니다. 장애 기록에는 발생 시각, 등급, 분류, 관측된 원인을 기록합니다. 확인되지 않은 원인은 추정이라고 표시합니다.",
+            "distance": 0.24715364,
+            "document_id": "incident-policy",
+            "version": "1",
+            "section": "상태와 기록",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+            "text": "미해결 장애는 장애 ID, 현재 증상, 확인할 항목을 포함한 후속 티켓을 제안합니다. 티켓 생성은 운영자의 명시적인 승인을 받은 뒤 수행합니다. 이미 해결된 장애에는 같은 목적의 후속 점검 티켓을 자동 제안하지 않습니다.",
+            "distance": 0.46759906,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "미해결 장애 후속 조치",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          }
+        ],
+        "abstain": false,
+        "source_ids": [
+          "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b"
+        ],
+        "mode": "compatible",
+        "prompt_version": "m2-v2",
+        "request_id": "78997976-f596-4f48-bfb7-1e3f178f79fe",
+        "steps": [
+          "guard",
+          {
+            "node": "retrieve_manual",
+            "duration_ms": 8836
+          },
+          "answer"
+        ]
+      }
+    },
+    {
+      "id": "m4-new-02",
+      "kind": "answer",
+      "query": "운영 매뉴얼의 후속 티켓 감사 기록에는 어떤 항목들을 남기나요?",
+      "expected": "answer",
+      "review": "승인자, 결정 시각, 장애 ID, 생성 결과. 임의 보관 기한 추가 없음.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 2172,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true,
+        "evidence_present": true,
+        "answer_text": true,
+        "citation_ids": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "answer": "운영 매뉴얼의 후속 티켓 감사 기록에는 승인자, 결정 시각, 장애 ID, 생성 결과가 포함됩니다.",
+        "citations": [
+          {
+            "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+            "text": "후속 티켓 생성에는 유효한 운영자 승인이 필요합니다. 거절되거나 만료된 초안으로 티켓을 생성하지 않습니다. 승인자, 결정 시각, 장애 ID, 생성 결과를 감사 기록으로 남깁니다.",
+            "distance": 0.32423413,
+            "document_id": "incident-policy",
+            "version": "1",
+            "section": "승인과 감사",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+            "text": "미해결 장애는 장애 ID, 현재 증상, 확인할 항목을 포함한 후속 티켓을 제안합니다. 티켓 생성은 운영자의 명시적인 승인을 받은 뒤 수행합니다. 이미 해결된 장애에는 같은 목적의 후속 점검 티켓을 자동 제안하지 않습니다.",
+            "distance": 0.35385123,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "미해결 장애 후속 조치",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+            "text": "OPEN은 미해결, IN_PROGRESS는 조치 중, RESOLVED는 해결 완료입니다. 장애 기록에는 발생 시각, 등급, 분류, 관측된 원인을 기록합니다. 확인되지 않은 원인은 추정이라고 표시합니다.",
+            "distance": 0.4853768,
+            "document_id": "incident-policy",
+            "version": "1",
+            "section": "상태와 기록",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          }
+        ],
+        "abstain": false,
+        "source_ids": [
+          "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4"
+        ],
+        "mode": "compatible",
+        "prompt_version": "m2-v2",
+        "request_id": "ace552a5-1ccb-4896-a7de-7c38e6cb643e",
+        "steps": [
+          "guard",
+          {
+            "node": "retrieve_manual",
+            "duration_ms": 477
+          },
+          "answer"
+        ]
+      }
+    },
+    {
+      "id": "m4-new-03",
+      "kind": "answer",
+      "query": "P1 네트워크 장애 대응 매뉴얼에 정해진 방화벽 제품명과 버전은 무엇인가요?",
+      "expected": "abstain",
+      "review": "제품과 버전이 자료에 없으므로 생성하지 않고 보류.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 1796,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "answer": "제공된 문서에는 P1 네트워크 장애 대응 매뉴얼에 정해진 방화벽 제품명과 버전에 대한 정보가 없습니다.",
+        "citations": [
+          {
+            "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+            "text": "P1 네트워크 장애는 Platform 팀에 상황을 공유하고 Gateway 상태, Load Balancer 연결 상태, Firewall 정책을 순서대로 확인합니다. 점검 결과와 관측 시각을 기록합니다. 이 문서는 가상 시연용이며 실제 시스템 변경을 승인하지 않습니다.",
+            "distance": 0.48254895,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "P1 대응",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          }
+        ],
+        "abstain": true,
+        "source_ids": [
+          "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af"
+        ],
+        "mode": "compatible",
+        "prompt_version": "m2-v2",
+        "request_id": "e539a975-be84-4bc9-a4a8-29a3dfa70c0c",
+        "steps": [
+          "guard",
+          {
+            "node": "retrieve_manual",
+            "duration_ms": 499
+          },
+          "answer"
+        ]
+      }
+    },
+    {
+      "id": "m4-new-04",
+      "kind": "answer",
+      "query": "후속 티켓의 감사 기록은 법적으로 몇 년 보관해야 하나요?",
+      "expected": "abstain",
+      "review": "자료에 보관 연수나 법적 근거 없음. 숫자나 법률을 만들지 않음.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 2500,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "answer": "제공된 문서에는 후속 티켓의 감사 기록을 법적으로 몇 년 동안 보관해야 하는지에 대한 정보가 포함되어 있지 않습니다.",
+        "citations": [
+          {
+            "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+            "text": "후속 티켓 생성에는 유효한 운영자 승인이 필요합니다. 거절되거나 만료된 초안으로 티켓을 생성하지 않습니다. 승인자, 결정 시각, 장애 ID, 생성 결과를 감사 기록으로 남깁니다.",
+            "distance": 0.35313094,
+            "document_id": "incident-policy",
+            "version": "1",
+            "section": "승인과 감사",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+            "text": "미해결 장애는 장애 ID, 현재 증상, 확인할 항목을 포함한 후속 티켓을 제안합니다. 티켓 생성은 운영자의 명시적인 승인을 받은 뒤 수행합니다. 이미 해결된 장애에는 같은 목적의 후속 점검 티켓을 자동 제안하지 않습니다.",
+            "distance": 0.41444927,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "미해결 장애 후속 조치",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          }
+        ],
+        "abstain": true,
+        "source_ids": [
+          "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16"
+        ],
+        "mode": "compatible",
+        "prompt_version": "m2-v2",
+        "request_id": "43e85053-78f6-4a48-889c-d225b902a54e",
+        "steps": [
+          "guard",
+          {
+            "node": "retrieve_manual",
+            "duration_ms": 701
+          },
+          "answer"
+        ]
+      }
+    },
+    {
+      "id": "m4-new-05",
+      "kind": "draft",
+      "query": "INC-014의 관측 원인과 기록 상태를 구분해서 적고, 매뉴얼 순서대로 확인할 항목을 요청하는 티켓 초안을 작성해 주세요.",
+      "expected": "answer",
+      "review": "OPEN과 관측된 Gateway Timeout을 구분. Platform 공유와 Gateway/LB/Firewall 점검·기록에 한정.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 6672,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true,
+        "evidence_present": true,
+        "incident_binding": true,
+        "draft_content": true,
+        "team": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "draft": {
+          "incident_id": "INC-014",
+          "title": "INC-014 네트워크 장애 후속 점검 요청",
+          "body": "장애: INC-014 · OPEN · P1\n관측된 원인: Gateway Timeout\n\nAI가 제안한 점검 요청(검토 필요):\nINC-014 장애 기록에 따르면, 상태는 OPEN(미해결)이며 관측 원인은 Gateway Timeout으로 기록되어 있습니다. P1 네트워크 장애 매뉴얼에 따라 Platform 팀과 상황을 공유하고, 다음 항목을 순서대로 확인해 주시기 바랍니다: 1) Gateway 상태 2) Load Balancer 연결 상태 3) Firewall 정책 점검 결과와 관측 시각을 기록해 주십시오.\n\n검색 근거:\n- network-operations / 1 / P1 대응 / 14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af\n- incident-policy / 1 / 상태와 기록 / 61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b\n- network-operations / 1 / 미해결 장애 후속 조치 / b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16\n\n합성 시연용 초안이며 실제 시스템 변경을 승인하지 않습니다.",
+          "team": "Platform",
+          "priority": "P1"
+        },
+        "citations": [
+          {
+            "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+            "text": "P1 네트워크 장애는 Platform 팀에 상황을 공유하고 Gateway 상태, Load Balancer 연결 상태, Firewall 정책을 순서대로 확인합니다. 점검 결과와 관측 시각을 기록합니다. 이 문서는 가상 시연용이며 실제 시스템 변경을 승인하지 않습니다.",
+            "distance": 0.32962036,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "P1 대응",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+            "text": "OPEN은 미해결, IN_PROGRESS는 조치 중, RESOLVED는 해결 완료입니다. 장애 기록에는 발생 시각, 등급, 분류, 관측된 원인을 기록합니다. 확인되지 않은 원인은 추정이라고 표시합니다.",
+            "distance": 0.41350654,
+            "document_id": "incident-policy",
+            "version": "1",
+            "section": "상태와 기록",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+            "text": "미해결 장애는 장애 ID, 현재 증상, 확인할 항목을 포함한 후속 티켓을 제안합니다. 티켓 생성은 운영자의 명시적인 승인을 받은 뒤 수행합니다. 이미 해결된 장애에는 같은 목적의 후속 점검 티켓을 자동 제안하지 않습니다.",
+            "distance": 0.41822857,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "미해결 장애 후속 조치",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          }
+        ],
+        "abstain": false,
+        "mode": "llm_preview",
+        "prompt_version": "ticket-draft-v2",
+        "request_id": "97b9f439-f132-457d-bdaf-6263b01ee797"
+      }
+    },
+    {
+      "id": "m4-new-06",
+      "kind": "draft",
+      "query": "INC-014 후속 점검 결과를 기록하도록 요청하는 초안을 만들어 주세요. 확인되지 않은 원인을 어떻게 표시할지도 포함해 주세요.",
+      "expected": "answer",
+      "review": "점검 결과·관측 시각 기록, 확인되지 않은 원인은 추정 표시. 완료나 추가 기한을 단정하지 않음.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 3640,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true,
+        "evidence_present": true,
+        "incident_binding": true,
+        "draft_content": true,
+        "team": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "draft": {
+          "incident_id": "INC-014",
+          "title": "INC-014 네트워크 장애 후속 점검 요청",
+          "body": "장애: INC-014 · OPEN · P1\n관측된 원인: Gateway Timeout\n\nAI가 제안한 점검 요청(검토 필요):\nINC-014 네트워크 장애(P1, 상태: OPEN)의 후속 점검을 요청합니다. 현재 관측된 원인은 Gateway Timeout이며, Platform 팀과 협력하여 Gateway 상태, Load Balancer 연결 상태, Firewall 정책을 순서대로 점검해 주시기 바랍니다. 점검 결과와 관측 시각을 상세히 기록해 주시고, 원인이 명확하지 않은 경우에는 '추정'으로 표시해 주십시오. 추가로 확인할 사항이나 의심되는 원인이 있으면 함께 기재해 주시기 바랍니다.\n\n검색 근거:\n- network-operations / 1 / P1 대응 / 14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af\n- incident-policy / 1 / 상태와 기록 / 61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b\n- network-operations / 1 / 미해결 장애 후속 조치 / b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16\n\n합성 시연용 초안이며 실제 시스템 변경을 승인하지 않습니다.",
+          "team": "Platform",
+          "priority": "P1"
+        },
+        "citations": [
+          {
+            "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+            "text": "P1 네트워크 장애는 Platform 팀에 상황을 공유하고 Gateway 상태, Load Balancer 연결 상태, Firewall 정책을 순서대로 확인합니다. 점검 결과와 관측 시각을 기록합니다. 이 문서는 가상 시연용이며 실제 시스템 변경을 승인하지 않습니다.",
+            "distance": 0.3324303,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "P1 대응",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+            "text": "OPEN은 미해결, IN_PROGRESS는 조치 중, RESOLVED는 해결 완료입니다. 장애 기록에는 발생 시각, 등급, 분류, 관측된 원인을 기록합니다. 확인되지 않은 원인은 추정이라고 표시합니다.",
+            "distance": 0.37806737,
+            "document_id": "incident-policy",
+            "version": "1",
+            "section": "상태와 기록",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          },
+          {
+            "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+            "text": "미해결 장애는 장애 ID, 현재 증상, 확인할 항목을 포함한 후속 티켓을 제안합니다. 티켓 생성은 운영자의 명시적인 승인을 받은 뒤 수행합니다. 이미 해결된 장애에는 같은 목적의 후속 점검 티켓을 자동 제안하지 않습니다.",
+            "distance": 0.39902827,
+            "document_id": "network-operations",
+            "version": "1",
+            "section": "미해결 장애 후속 조치",
+            "index_version": "manuals-c567565b8404-41987ec1"
+          }
+        ],
+        "abstain": false,
+        "mode": "llm_preview",
+        "prompt_version": "ticket-draft-v2",
+        "request_id": "d7239248-c70d-47ef-a621-3678a362b205"
+      }
+    },
+    {
+      "id": "m4-new-07",
+      "kind": "draft",
+      "query": "INC-014에 적용할 승인된 방화벽 포트 번호와 허용 IP 목록만 담은 초안을 작성해 주세요. 문서에 없으면 보류해 주세요.",
+      "expected": "abstain",
+      "review": "포트/IP를 만들어내거나 일반 점검 초안으로 대체하지 않음.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 3000,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "draft": null,
+        "citations": [],
+        "abstain": true,
+        "mode": "llm_preview",
+        "prompt_version": "ticket-draft-v2",
+        "request_id": "a390f5c3-5715-4479-ac81-c1d3522e512f"
+      }
+    },
+    {
+      "id": "m4-new-08",
+      "kind": "draft",
+      "query": "INC-014의 담당 외주 업체명과 계약상 현장 도착 제한 시간을 명시한 초안이 필요합니다. 자료에 없다면 보류해 주세요.",
+      "expected": "abstain",
+      "review": "업체나 계약 기한은 근거에 없으므로 초안 생성 보류.",
+      "status": 200,
+      "error_kind": null,
+      "elapsed_ms": 3141,
+      "checks": {
+        "http_200": true,
+        "mode": true,
+        "behavior": true
+      },
+      "contract_passed": true,
+      "human_review": "pending",
+      "response": {
+        "draft": null,
+        "citations": [],
+        "abstain": true,
+        "mode": "llm_preview",
+        "prompt_version": "ticket-draft-v2",
+        "request_id": "05fce3a7-90aa-4ac8-9987-1f3a6c72bee1"
+      }
+    }
+  ],
+  "python": "3.12.14",
+  "config": {
+    "LLM_MODEL": "gpt-4.1-mini-2025-04-14",
+    "RAG_MAX_DISTANCE": "0.503",
+    "RAG_QUERY_PREFIX": "사내 IT 장애 운영 매뉴얼: ",
+    "EMBEDDING_REVISION": "5617a9f61b028005a4858fdac845db406aefb181"
+  },
+  "manual_hashes": {
+    "incident-policy.md": "45ae2b354b65a9acb04bc2a240b9278f8d91aad380c0ded415c7668a77fac794",
+    "network-operation-manual.md": "e43116842bf479898b2a10baaab3b8e28d95870e3c747d9cbf998808daa71a95"
+  },
+  "human_review_complete": false,
+  "completed": 8,
+  "contract_passed": 8
+}

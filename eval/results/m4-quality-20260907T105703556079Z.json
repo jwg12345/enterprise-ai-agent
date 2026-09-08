@@ -1,0 +1,44 @@
+{
+  "dataset_sha256": "faff11f87036542de378953b8f3744e4d75ad6de4cfb69024cb42706cb842745",
+  "dataset": "m4-acceptance.jsonl",
+  "client_timeout_seconds": 65,
+  "evaluation_role": "regression",
+  "planned": 8,
+  "cases": [
+    {
+      "id": "m4-new-01",
+      "kind": "answer",
+      "query": "장애 상태 IN_PROGRESS와 RESOLVED의 의미는 어떻게 다른가요?",
+      "expected": "answer",
+      "review": "각각 조치 중과 해결 완료. 해결 시각이나 원인까지 추측하지 않음.",
+      "status": 504,
+      "error_kind": "http_error",
+      "elapsed_ms": 60625,
+      "checks": {
+        "http_200": false,
+        "mode": false,
+        "behavior": false,
+        "evidence_present": false,
+        "answer_text": false,
+        "citation_ids": false
+      },
+      "contract_passed": false,
+      "human_review": "pending",
+      "response": {}
+    }
+  ],
+  "python": "3.12.14",
+  "config": {
+    "LLM_MODEL": "gpt-4.1-mini-2025-04-14",
+    "RAG_MAX_DISTANCE": "0.503",
+    "RAG_QUERY_PREFIX": "사내 IT 장애 운영 매뉴얼: ",
+    "EMBEDDING_REVISION": "5617a9f61b028005a4858fdac845db406aefb181"
+  },
+  "manual_hashes": {
+    "incident-policy.md": "45ae2b354b65a9acb04bc2a240b9278f8d91aad380c0ded415c7668a77fac794",
+    "network-operation-manual.md": "e43116842bf479898b2a10baaab3b8e28d95870e3c747d9cbf998808daa71a95"
+  },
+  "human_review_complete": false,
+  "completed": 1,
+  "contract_passed": 0
+}

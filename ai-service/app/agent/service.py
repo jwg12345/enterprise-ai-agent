@@ -16,6 +16,11 @@ class AnswerService:
     @classmethod
     async def start(cls):
         store = await asyncio.to_thread(RagStore.from_env)
+        # 첫 사용자 요청 전에 CPU 임베딩과 인덱스 조회를 한 번 수행합니다.
+        # 합성 문구만 사용하며 LLM/업무 API는 호출하지 않습니다. 실패하면 준비 완료가 아닙니다.
+        if os.environ.get("RAG_WARMUP", "false").lower() == "true":
+            async with asyncio.timeout(120):
+                await asyncio.to_thread(store.search, "운영 매뉴얼 점검 절차", "viewer")
         mode = os.environ.get("LLM_MODE", "extractive")
         client = None
         if mode == "compatible":
@@ -55,5 +60,5 @@ class AnswerService:
         return {"request_id": request_id, "answer": result["answer"], "citations": result["citations"],
                 "source_ids": result["source_ids"], "abstain": result["abstain"],
                 "mode": self.generator.mode, "steps": result["steps"],
-                "incidents": result.get("incidents"), "prompt_version": "m2-v1",
+                "incidents": result.get("incidents"), "prompt_version": "m2-v2",
                 "relevance_threshold_calibrated": False}

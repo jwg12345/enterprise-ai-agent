@@ -1,7 +1,8 @@
 import asyncio
 import json
 from pathlib import Path
-from unittest.mock import Mock
+from unittest.mock import Mock, AsyncMock
+from types import SimpleNamespace
 
 import httpx
 import pytest
@@ -13,7 +14,18 @@ from app.agent.graph import AnswerNodes
 from app.config import Settings
 from app.main import create_app
 from app.rag.documents import load_chunks
-from app.rag.store import RagStore, RagUnavailable
+from app.rag.store import RagStore, RagUnavailable, measured_phase
+
+
+def test_phase_failure_is_logged_without_exception_content(caplog):
+    with caplog.at_level("INFO", logger="enterprise.ai"):
+        with pytest.raises(RuntimeError):
+            with measured_phase("test-operation", "embedding"):
+                raise RuntimeError("private-query-and-secret")
+    events = [json.loads(r.message) for r in caplog.records if 'rag_phase' in r.message]
+    assert [e["state"] for e in events] == ["started", "failed"]
+    assert events[-1]["duration_ms"] >= 0
+    assert "private-query-and-secret" not in caplog.text
 
 SOURCE = {"chunk_id": "c1", "text": "Gateway 상태를 확인합니다.", "document_id": "network",
           "version": "1", "section": "대응", "distance": 0.1, "index_version": "demo"}
@@ -106,6 +118,34 @@ def test_missing_revision_rejected_before_model_import(monkeypatch):
     monkeypatch.setenv("EMBEDDING_REVISION", "main")
     with pytest.raises(RagUnavailable):
         RagStore.from_env()
+
+
+@pytest.mark.parametrize("change", [{"revision": "b" * 40}, {"dimension": 768}])
+def test_model_manifest_mismatch_never_embeds(tmp_path, change):
+    collection = Mock(metadata={"complete": True})
+    rag = store(tmp_path, collection)
+    manifest = json.loads(rag.manifest.read_text())
+    rag.manifest.write_text(json.dumps({**manifest, **change}))
+    with pytest.raises(RagUnavailable):
+        rag.search("점검", "viewer")
+    rag.model.encode.assert_not_called()
+    collection.query.assert_not_called()
+
+
+@pytest.mark.parametrize("failure,status,code", [(RagUnavailable, 503, "RAG_UNAVAILABLE"),
+    (AnswerFailure, 502, "ANSWER_FAILED"), (TimeoutError, 504, "ANSWER_TIMEOUT")])
+def test_runtime_failures_return_safe_errors_not_answers(monkeypatch, failure, status, code):
+    monkeypatch.setenv("M2_ENABLED", "false")
+    monkeypatch.setenv("M3_ENABLED", "false")
+    settings = Settings("http://business", "s" * 32, "v" * 32, "o" * 32)
+    with TestClient(create_app(settings, httpx.MockTransport(lambda request: httpx.Response(200)))) as api:
+        api.app.state.answers = SimpleNamespace(run=AsyncMock(side_effect=failure("sensitive-upstream-detail")), close=AsyncMock())
+        response = api.post("/v1/answers", json={"query": "점검 절차"},
+                            headers={"Authorization": "Bearer " + "v" * 32})
+        assert response.status_code == status
+        assert response.json()["error"]["code"] == code
+        assert "answer" not in response.json() and "sensitive-upstream-detail" not in response.text
+        assert response.headers.get("x-request-id")
 
 
 @pytest.mark.parametrize("query", ["", " " * 3, "x" * 4001])

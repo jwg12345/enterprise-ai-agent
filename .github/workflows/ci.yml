@@ -1,4 +1,4 @@
-name: M1 checks
+name: Project checks
 on:
   push:
   pull_request:
@@ -15,11 +15,10 @@ jobs:
           python-version: "3.12"
       - run: uv sync --frozen
       - run: uv run ruff check ai-service demo-ui scripts
-      - run: uv run pytest -q
       - run: uv run python scripts/check_docs.py
       - run: uv pip install --python .venv/bin/python --torch-backend cpu --require-hashes -r ai-service/requirements-m2.lock
-      - run: uv run --no-sync pytest ai-service/tests_m2 -q
-      - run: uv run --no-sync pytest -q
+      - run: uv pip install --python .venv/bin/python --require-hashes -r ai-service/requirements-m3.lock
+      - run: uv run --no-sync pytest ai-service/tests ai-service/tests_m2 demo-ui/tests -q
   java:
     runs-on: ubuntu-latest
     steps:

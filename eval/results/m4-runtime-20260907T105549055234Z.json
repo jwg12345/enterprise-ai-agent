@@ -1,0 +1,110 @@
+{
+  "read_only": true,
+  "health": {
+    "live": {
+      "http_status": 200,
+      "state": {
+        "status": "UP",
+        "stage": null,
+        "agent_db": null,
+        "business": null,
+        "rag": null
+      },
+      "elapsed_ms": 31
+    },
+    "ready": {
+      "http_status": 200,
+      "state": {
+        "status": "UP",
+        "stage": "M3",
+        "agent_db": "UP",
+        "business": "UP",
+        "rag": "UP"
+      },
+      "elapsed_ms": 47
+    }
+  },
+  "containers": [
+    {
+      "id": "0dab8bd41ed1",
+      "state": {
+        "Status": "running",
+        "OOMKilled": false,
+        "ExitCode": 0,
+        "StartedAt": "2026-09-07T00:08:32.369324067Z"
+      },
+      "stats": {
+        "Name": "enterprise-ai-agent-ai-1",
+        "CPUPerc": "0.23%",
+        "MemUsage": "1.002GiB / 3.707GiB",
+        "MemPerc": "27.04%",
+        "PIDs": "23"
+      }
+    },
+    {
+      "id": "9899fec10cd3",
+      "state": {
+        "Status": "running",
+        "OOMKilled": false,
+        "ExitCode": 0,
+        "StartedAt": "2026-09-07T00:08:08.531409844Z"
+      },
+      "stats": {
+        "Name": "enterprise-ai-agent-business-1",
+        "CPUPerc": "0.18%",
+        "MemUsage": "250MiB / 3.707GiB",
+        "MemPerc": "6.59%",
+        "PIDs": "47"
+      }
+    },
+    {
+      "id": "106bc5f4a256",
+      "state": {
+        "Status": "running",
+        "OOMKilled": false,
+        "ExitCode": 0,
+        "StartedAt": "2026-09-06T23:44:01.127141406Z"
+      },
+      "stats": {
+        "Name": "enterprise-ai-agent-chroma-1",
+        "CPUPerc": "0.00%",
+        "MemUsage": "15.72MiB / 3.707GiB",
+        "MemPerc": "0.41%",
+        "PIDs": "21"
+      }
+    },
+    {
+      "id": "94dd9b61bf6c",
+      "state": {
+        "Status": "running",
+        "OOMKilled": false,
+        "ExitCode": 0,
+        "StartedAt": "2026-09-06T23:44:01.229747516Z"
+      },
+      "stats": {
+        "Name": "enterprise-ai-agent-postgres-1",
+        "CPUPerc": "17.56%",
+        "MemUsage": "47.28MiB / 3.707GiB",
+        "MemPerc": "1.25%",
+        "PIDs": "16"
+      }
+    },
+    {
+      "id": "42701e10bd1b",
+      "state": {
+        "Status": "running",
+        "OOMKilled": false,
+        "ExitCode": 0,
+        "StartedAt": "2026-09-06T23:45:48.503681157Z"
+      },
+      "stats": {
+        "Name": "enterprise-ai-agent-ui-1",
+        "CPUPerc": "0.81%",
+        "MemUsage": "130.8MiB / 3.707GiB",
+        "MemPerc": "3.45%",
+        "PIDs": "14"
+      }
+    }
+  ],
+  "docker_access": "available"
+}

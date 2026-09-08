@@ -1,0 +1,1036 @@
+{
+  "run_id": "20260906T033023Z",
+  "status": "measured",
+  "dataset_sha256": "44953f5efa4e25f2ed3adc6df9015d66fa0ca0e8fac1e30856ea9e1c2b4117b9",
+  "manifest": {
+    "collection": "manuals-c567565b8404-41987ec1",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "dimension": 1024,
+    "count": 4,
+    "content_hash": "c567565b84040eaeefb6c11866c38f7ff2639891e191d693af53881c6bb2eeb0",
+    "chunk_size": 500,
+    "overlap": 80
+  },
+  "regression_dataset_sha256": "bb0a8cd32ad87f5db3a161920d6cec37a0f55e3025ee92c211c44f5c355f794a",
+  "role": "viewer",
+  "cases": [
+    {
+      "id": "rag-dev-01",
+      "query": "P1 네트워크 장애 대응 시 먼저 누구에게 공유하나요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응"
+        }
+      ],
+      "variant": "original",
+      "search_query": "P1 네트워크 장애 대응 시 먼저 누구에게 공유하나요?",
+      "duration_ms": 41142,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.33275902,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.59929097,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.61327285,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.6475004,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-02",
+      "query": "Gateway 다음에 확인할 대상은 무엇인가요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응"
+        }
+      ],
+      "variant": "original",
+      "search_query": "Gateway 다음에 확인할 대상은 무엇인가요?",
+      "duration_ms": 498,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.45596775,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.45925033,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.5302746,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.5450283,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-03",
+      "query": "미해결 장애의 후속 티켓 초안에 어떤 정보를 적나요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치"
+        }
+      ],
+      "variant": "original",
+      "search_query": "미해결 장애의 후속 티켓 초안에 어떤 정보를 적나요?",
+      "duration_ms": 297,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.24048862,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.35143596,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.47765085,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.58065045,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-04",
+      "query": "장애 상태 OPEN과 RESOLVED는 각각 무슨 뜻인가요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록"
+        }
+      ],
+      "variant": "original",
+      "search_query": "장애 상태 OPEN과 RESOLVED는 각각 무슨 뜻인가요?",
+      "duration_ms": 450,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.31253535,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5035563,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.56048477,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.600991,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-05",
+      "query": "확인되지 않은 장애 원인은 어떻게 기록하나요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록"
+        }
+      ],
+      "variant": "original",
+      "search_query": "확인되지 않은 장애 원인은 어떻게 기록하나요?",
+      "duration_ms": 321,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.3599324,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.40360454,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5018925,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.52351177,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-06",
+      "query": "승인 감사 기록에는 어떤 항목이 필요한가요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사"
+        }
+      ],
+      "variant": "original",
+      "search_query": "승인 감사 기록에는 어떤 항목이 필요한가요?",
+      "duration_ms": 265,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.37534457,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.48168367,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.4970932,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.56666315,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-07",
+      "query": "김치찌개 재료와 조리법을 알려줘",
+      "expected_sections": [],
+      "variant": "original",
+      "search_query": "김치찌개 재료와 조리법을 알려줘",
+      "duration_ms": 1312,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.6793406,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.68340206,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.712291,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.71663463,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-08",
+      "query": "네트워크 장애 담당자의 개인 전화번호는?",
+      "expected_sections": [],
+      "variant": "original",
+      "search_query": "네트워크 장애 담당자의 개인 전화번호는?",
+      "duration_ms": 277,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5144383,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5582318,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.60842794,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.6228734,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-09",
+      "query": "Gateway를 재시작하는 정확한 셸 명령은?",
+      "expected_sections": [],
+      "variant": "original",
+      "search_query": "Gateway를 재시작하는 정확한 셸 명령은?",
+      "duration_ms": 606,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.56958437,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5832808,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.6120446,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.6446079,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-10",
+      "query": "휴가 신청은 어떤 시스템에서 하나요?",
+      "expected_sections": [],
+      "variant": "original",
+      "search_query": "휴가 신청은 어떤 시스템에서 하나요?",
+      "duration_ms": 287,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5715857,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.57185143,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.6006075,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.62215394,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-fixed-05",
+      "query": "네트워크 운영 문서만으로 실제 시스템을 변경해도 된다는 뜻인가요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응"
+        }
+      ],
+      "variant": "original",
+      "search_query": "네트워크 운영 문서만으로 실제 시스템을 변경해도 된다는 뜻인가요?",
+      "duration_ms": 242,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5251082,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.56192696,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.57107913,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.60530794,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-fixed-12",
+      "query": "원인이 확정되지 않았을 때 확정 사실처럼 적어도 되나요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록"
+        }
+      ],
+      "variant": "original",
+      "search_query": "원인이 확정되지 않았을 때 확정 사실처럼 적어도 되나요?",
+      "duration_ms": 254,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.4752141,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.51425505,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.5605538,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.61366236,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-01",
+      "query": "P1 네트워크 장애 대응 시 먼저 누구에게 공유하나요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: P1 네트워크 장애 대응 시 먼저 누구에게 공유하나요?",
+      "duration_ms": 369,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.3374736,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5574662,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.566885,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.60894156,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-02",
+      "query": "Gateway 다음에 확인할 대상은 무엇인가요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: Gateway 다음에 확인할 대상은 무엇인가요?",
+      "duration_ms": 281,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.43170363,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.4691855,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.5172926,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.55783165,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-03",
+      "query": "미해결 장애의 후속 티켓 초안에 어떤 정보를 적나요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 미해결 장애의 후속 티켓 초안에 어떤 정보를 적나요?",
+      "duration_ms": 556,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.26166523,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.3787021,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.43395805,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5272541,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-04",
+      "query": "장애 상태 OPEN과 RESOLVED는 각각 무슨 뜻인가요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 장애 상태 OPEN과 RESOLVED는 각각 무슨 뜻인가요?",
+      "duration_ms": 311,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.27512327,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.4711032,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.49842,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.5574984,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-05",
+      "query": "확인되지 않은 장애 원인은 어떻게 기록하나요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 확인되지 않은 장애 원인은 어떻게 기록하나요?",
+      "duration_ms": 233,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.353245,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.42648727,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.4799196,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.51060414,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-06",
+      "query": "승인 감사 기록에는 어떤 항목이 필요한가요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 승인 감사 기록에는 어떤 항목이 필요한가요?",
+      "duration_ms": 205,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.39501554,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.44730052,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.46636412,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.50551146,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-07",
+      "query": "김치찌개 재료와 조리법을 알려줘",
+      "expected_sections": [],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 김치찌개 재료와 조리법을 알려줘",
+      "duration_ms": 224,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.56440353,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.572929,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.58072233,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.6072412,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-08",
+      "query": "네트워크 장애 담당자의 개인 전화번호는?",
+      "expected_sections": [],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 네트워크 장애 담당자의 개인 전화번호는?",
+      "duration_ms": 249,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5082075,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5597689,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.5806245,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.6079508,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-09",
+      "query": "Gateway를 재시작하는 정확한 셸 명령은?",
+      "expected_sections": [],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: Gateway를 재시작하는 정확한 셸 명령은?",
+      "duration_ms": 248,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5278337,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.54824734,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.59471714,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.59486884,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-dev-10",
+      "query": "휴가 신청은 어떤 시스템에서 하나요?",
+      "expected_sections": [],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 휴가 신청은 어떤 시스템에서 하나요?",
+      "duration_ms": 229,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5187602,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5277828,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.54310775,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.5544673,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-fixed-05",
+      "query": "네트워크 운영 문서만으로 실제 시스템을 변경해도 된다는 뜻인가요?",
+      "expected_sections": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 네트워크 운영 문서만으로 실제 시스템을 변경해도 된다는 뜻인가요?",
+      "duration_ms": 374,
+      "candidates": [
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.50295275,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.5396066,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.5550484,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.5662954,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    },
+    {
+      "id": "rag-fixed-12",
+      "query": "원인이 확정되지 않았을 때 확정 사실처럼 적어도 되나요?",
+      "expected_sections": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록"
+        }
+      ],
+      "variant": "context",
+      "search_query": "사내 IT 장애 운영 매뉴얼: 원인이 확정되지 않았을 때 확정 사실처럼 적어도 되나요?",
+      "duration_ms": 628,
+      "candidates": [
+        {
+          "document_id": "incident-policy",
+          "section": "상태와 기록",
+          "chunk_id": "61a722490a9ae63771e7e8abe51da76dc51b0d7ad40f000c8c153aef30641a1b",
+          "distance": 0.41545862,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "미해결 장애 후속 조치",
+          "chunk_id": "b37dd9f01fbe746893c647c68fadcf00a15cd3e728112895be93400217be1e16",
+          "distance": 0.4555533,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "incident-policy",
+          "section": "승인과 감사",
+          "chunk_id": "92776b75c746f0e2acd885743e96932a858298b17a950cd3023a47781bc86bc4",
+          "distance": 0.51484203,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        },
+        {
+          "document_id": "network-operations",
+          "section": "P1 대응",
+          "chunk_id": "14cb7ac3ee0eec214f800a51cd768f987f2f8c569e53ec7b464cc61a4d3cd6af",
+          "distance": 0.5283464,
+          "index_version": "manuals-c567565b8404-41987ec1"
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "decision": "diagnostic_only_no_threshold_recommendation",
+    "variants": {
+      "original": {
+        "threshold": 0.456,
+        "positive_total": 8,
+        "positive_hits": 6,
+        "negative_total": 4,
+        "negative_false_retrievals": 0
+      },
+      "context": {
+        "threshold": 0.456,
+        "positive_total": 8,
+        "positive_hits": 7,
+        "negative_total": 4,
+        "negative_false_retrievals": 0
+      }
+    }
+  },
+  "limitations": [
+    "개발셋과 기존 실패 사례를 사용한 진단; 독립 평가 아님",
+    "임계값은 자동 적용하지 않음",
+    "권한 필터 적용 후 top 5 후보; LLM/Guardrail 경로는 검사하지 않음",
+    "근거 없는 질문의 주변 문서 검색도 false retrieval로 계산하는 보수적 기준"
+  ],
+  "ai_restored": true
+}

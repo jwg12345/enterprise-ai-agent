@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "real pending UI",
+      "passed": true
+    },
+    {
+      "name": "real rejected UI",
+      "passed": true
+    },
+    {
+      "name": "no approve action",
+      "passed": true
+    },
+    {
+      "name": "real ledger rejected without ticket",
+      "passed": true
+    }
+  ],
+  "run_id": "64dc1a89-630c-4663-b436-d6d365b94441",
+  "approval_id": "dcb810ff-2428-49ca-9731-81774c51de9a"
+}

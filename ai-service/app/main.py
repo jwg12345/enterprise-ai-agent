@@ -21,6 +21,9 @@ from app.config import Settings
 from app.agent.answers import AnswerRequest, AnswerFailure
 from app.rag.store import RagUnavailable
 from app.models import IncidentPage, IncidentQuery
+from app.approvals import approval_router
+from app.ticket_runs import ticket_runs_router
+from app.draft_previews import draft_preview_router
 
 logger = logging.getLogger("enterprise.ai")
 logger.setLevel(logging.INFO)
@@ -44,6 +47,11 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
         ) as client:
             app.state.client = client
             app.state.answers = None
+            app.state.tickets = None
+            if os.environ.get("M3_ENABLED", "false").lower() == "true":
+                from app.agent.ticket_runtime import TicketRuntime
+                app.state.tickets = TicketRuntime(client, app.state.settings.business_service_token)
+                await app.state.tickets.setup()
             if os.environ.get("M2_ENABLED", "false").lower() == "true":
                 from app.agent.service import AnswerService
                 app.state.answers = await AnswerService.start()
@@ -121,9 +129,12 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
             healthy = False
         answers = request.app.state.answers
         rag_ready = await answers.ready() if answers else False
-        complete = healthy and (rag_ready if answers else True)
+        tickets = request.app.state.tickets
+        ticket_ready = await tickets.ready() if tickets else True
+        complete = healthy and (rag_ready if answers else True) and ticket_ready
         return JSONResponse(status_code=200 if complete else 503, content={
-            "status": "UP" if complete else "DOWN", "stage": "M2" if answers else "M1",
+            "status": "UP" if complete else "DOWN", "stage": "M3" if tickets else "M2" if answers else "M1",
+            "agent_db": ("UP" if ticket_ready else "DOWN") if tickets else "NOT_ENABLED",
             "business": "UP" if healthy else "DOWN",
             "rag": ("UP" if rag_ready else "DOWN") if answers else "NOT_IMPLEMENTED"
         })
@@ -184,6 +195,9 @@ def create_app(settings: Settings | None = None, transport=None) -> FastAPI:
         except TimeoutError:
             raise ApiError(504, "ANSWER_TIMEOUT", "문서 검색·답변 시간이 초과되었습니다.", True) from None
 
+    app.include_router(approval_router(identity, ApiError))
+    app.include_router(ticket_runs_router(identity, ApiError))
+    app.include_router(draft_preview_router(identity, incidents, ApiError))
     return app
 
 

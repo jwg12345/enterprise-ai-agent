@@ -1,6 +1,6 @@
 # 전체 Architecture
 
-전체 목표 설계입니다. M1에서는 UI → FastAPI 조회 프록시 → Spring → PostgreSQL을 구현합니다. LangGraph·RAG·승인·Agent 체크포인트는 후속 범위입니다. 현재 실행 범위는 [M1 안내](runbook.md)를 참고합니다.
+전체 목표 설계입니다. 현재 업무 조회·RAG·LangGraph 승인 대기·PostgreSQL 체크포인트·승인 후 티켓 생성의 대표 흐름을 구현하고 확인했습니다. 자연어 기간 필터 추출과 자동 백그라운드 복구는 아직 목표 범위입니다. 현재 검증 결과와 설계 대비 남은 항목은 [M4 현황](m4-status.md)을 우선 참고합니다.
 
 ## 1. 서비스 경계
 

@@ -1,0 +1,41 @@
+{
+  "dataset_sha256": "aa35c19bb9ec71290e5efc003ad170a60a73150b1ebadaf62372b0877a7a9c3a",
+  "evaluation_role": "regression",
+  "planned": 8,
+  "cases": [
+    {
+      "id": "m4-a01",
+      "kind": "answer",
+      "query": "네트워크 P1 점검에서 Gateway 확인을 마쳤습니다. 이어서 살펴볼 두 대상과 남겨야 할 기록을 알려주세요.",
+      "expected": "answer",
+      "review": "Load Balancer, Firewall, 결과와 관측 시각. 보고 기한이나 신규 조직을 만들지 않음.",
+      "status": 0,
+      "elapsed_ms": 60063,
+      "checks": {
+        "http_200": false,
+        "mode": false,
+        "behavior": false,
+        "evidence_present": false,
+        "answer_text": false,
+        "citation_ids": false
+      },
+      "contract_passed": false,
+      "human_review": "pending",
+      "response": {}
+    }
+  ],
+  "python": "3.12.14",
+  "config": {
+    "LLM_MODEL": "gpt-4.1-mini-2025-04-14",
+    "RAG_MAX_DISTANCE": "0.503",
+    "RAG_QUERY_PREFIX": "사내 IT 장애 운영 매뉴얼: ",
+    "EMBEDDING_REVISION": "5617a9f61b028005a4858fdac845db406aefb181"
+  },
+  "manual_hashes": {
+    "incident-policy.md": "45ae2b354b65a9acb04bc2a240b9278f8d91aad380c0ded415c7668a77fac794",
+    "network-operation-manual.md": "e43116842bf479898b2a10baaab3b8e28d95870e3c747d9cbf998808daa71a95"
+  },
+  "human_review_complete": false,
+  "completed": 1,
+  "contract_passed": 0
+}

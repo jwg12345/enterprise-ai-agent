@@ -2,7 +2,7 @@
 
 ## 읽는 순서와 범위
 
-README.md → docs/architecture.md → docs/operations.md → docs/api-contract.md → 해당 서비스 README 순서로 읽습니다. 요구사항 변경은 관련 문서와 함께 반영합니다. M1 조회 서비스는 검증됐습니다. M2 RAG/Agent 코드·추가 의존성 lock·설치 및 실제 LangGraph 테스트는 완료 기록이 있습니다. 실제 모델·검색 통합·전체 컨테이너 시연 검증은 미완료입니다. docs/m2-status.md를 읽고 진행하세요. M2 또는 전체 MVP 완료로 보고하지 않습니다.
+README.md → docs/architecture.md → docs/operations.md → docs/api-contract.md → 해당 서비스 README 순서로 읽습니다. 요구사항 변경은 관련 문서와 함께 반영합니다. M1 조회·M2 실제 검색과 생성 답변·M3 자연어 초안과 사람 승인 후 티켓 생성의 대표 흐름을 확인했습니다. M2/M3 미검증 항목은 M4에서 추적하며 전체 완료로 표시하지 않습니다. 2026-09-08 사용자 결정에 따라 docs/final-status.md와 docs/remaining-work.md를 읽고 포트폴리오 마무리를 진행하세요. 추가 성능 검사·새 기능 개발·새 환경 재설치 검증은 반복하지 않습니다. 기존 설치/검색 보정을 반복하지 않습니다. 최종 문서·최소 검사·비밀 확인 후 기존 공개 GitHub 저장소에 업로드하고 CI 결과를 확인하는 순서가 승인됐습니다.
 
 사용자 설명·문서·PR 본문은 한글 중심으로 작성합니다. 코드 식별자, API 필드, 파일명은 일관된 영어를 사용합니다. 기능별로 작은 변경을 만들고 기존 사용자 변경을 덮어쓰지 않습니다.
 

@@ -1,136 +1,78 @@
-<!-- 현재 상태 요약 -->
-> **현재: M2 실제 검색·OpenAI 답변·화면 연결 확인, 품질/예외 검증 진행 중.** 전체 MVP 완료 전입니다. [남은 작업과 재개 지점](docs/remaining-work.md)을 참고하세요.
-
 # 기업 업무 대응 AI Agent
 
-사내 운영 문서와 장애 데이터를 함께 조회하고, 근거 있는 대응 방안을 제시하며, **사람의 승인 후 후속 티켓을 생성**하는 업무 지원 서비스입니다.
+운영 매뉴얼과 장애 기록으로 후속 점검 초안을 만들고, **사람의 승인 후 Spring API가 티켓을 생성하는 로컬 시연 프로젝트**입니다. 가상 회사의 합성 데이터만 사용합니다.
 
-> 현재 단계: M1 조회 서비스 구현. Streamlit → FastAPI → Spring Boot → PostgreSQL을 연결했습니다. 실제 RAG·LangGraph·영속 승인·티켓 생성·LLM 평가는 M2 이후 범위입니다. 아래 전체 요구사항과 성능 수치는 최종 목표입니다.
+Streamlit · FastAPI · LangGraph · BGE-M3/ChromaDB · Spring Boot · PostgreSQL · Docker Compose
 
-## 1. 해결할 문제
+## 무엇을 구현했나요?
 
-IT 운영 담당자는 장애 기록, 운영 매뉴얼, 티켓 시스템을 오가며 정보를 찾습니다. 문서만 검색하는 챗봇으로는 현재 장애 상태를 확인하거나 후속 업무를 안전하게 처리하기 어렵습니다. 이 프로젝트는 문서 검색과 업무 API를 연결하고 변경 작업에는 승인·권한·감사 기록을 적용합니다.
+1. 화면에서 기간·등급·분류를 선택해 실제 업무 API로 장애를 조회합니다.
+2. 운영 매뉴얼을 검색하고 근거와 함께 LLM 답변을 표시합니다. 근거가 부족하면 보류합니다.
+3. 선택한 미해결 장애와 자연어 요청으로 티켓 초안을 생성합니다.
+4. 사람이 초안을 검토한 후 승인 또는 거절합니다.
+5. Spring이 권한·소유권·초안 해시·만료를 확인하고 티켓을 저장합니다.
+6. 재시작이나 응답 유실 후 같은 실행을 재개하며 같은 승인으로 중복 티켓을 만들지 않습니다.
 
-가상 회사의 합성 데이터만 사용합니다. 실제 기업에서 운영 중인 서비스라는 의미는 아닙니다.
+현재 날짜 조건은 **명시적 필터**입니다. 자연어의 “지난달”을 자동 해석하는 기능, 자동 백그라운드 복구는 후속 범위입니다. UI의 실행 조회·재개와 자동 복구를 구분합니다.
 
-## 2. 대표 시나리오
+## 구조와 설계 선택
 
-> “2026년 8월의 P1 네트워크 장애를 찾아 원인을 요약하고, 운영 매뉴얼에 따른 대응 방안을 알려줘. 아직 해결되지 않았다면 후속 티켓도 만들어줘.”
-
-1. Spring API에서 기간·등급·분류 조건으로 장애를 조회합니다.
-2. BGE-M3 + ChromaDB로 관련 매뉴얼을 검색합니다.
-3. 실제 장애 데이터와 문서 근거를 구분해 답변합니다.
-4. 미해결 장애에 대해 티켓 초안을 보여주고 승인을 기다립니다.
-5. 승인 권한과 초안 유효성을 확인한 후 Spring API가 티켓을 생성합니다.
-6. 생성 결과와 요청 추적 ID를 표시합니다. 거절하면 생성하지 않습니다.
-
-고정 시연 기준 시각은 `2026-09-05T00:00:00+09:00`입니다. “지난달”은 Asia/Seoul 기준 8월 1일 이상, 9월 1일 미만으로 해석하며 화면에 실제 검색 기간을 표시합니다. 일반 실행에서는 서버 시각을 사용합니다.
-
-## 3. 사용자와 범위
-
-| 역할 | 허용 작업 |
-|---|---|
-| 조회자(viewer) | 본인 권한 범위의 장애 조회·문서 기반 질문·실행 결과 조회 |
-| 운영자(operator) | 조회 기능 + 본인이 요청한 티켓 초안 승인·거절 |
-
-MVP는 단일 가상 조직의 IT 장애 대응에 집중합니다. 티켓 생성 이외의 DB 변경, 실제 서버 복구 명령 실행, 이메일·메신저 전송, PDF/OCR, 다중 조직, SSO, Kubernetes, 모델 학습은 후속 범위입니다. LLM 제공자와 모델은 구현 시 설정으로 선택하고, 테스트에서는 결정론적 대체 구현을 사용합니다.
-
-## 4. 기능 요구사항과 인수 기준
-
-| ID | 요구사항 | 완료를 판정하는 증거 |
-|---|---|---|
-| FR-01 | 자연어 요청에서 기간·등급·분류를 구조화 | 스키마 밖 값은 거절하고 모호한 기간은 확인 요청 |
-| FR-02 | 장애 목록 조회 | Spring API의 필터·페이지 크기 제한 검증; LLM의 임의 SQL 금지 |
-| FR-03 | 문서 검색 | 문서 ID·버전·섹션·chunk ID·검색 거리 반환; 허용 문서만 검색 |
-| FR-04 | 근거 기반 답변 | 주요 대응 주장에 출처 제공; 근거 없으면 정보 부족 표시 |
-| FR-05 | 티켓 초안 생성 | 장애 ID·제목·담당팀·우선순위·본문을 승인 전에 표시 |
-| FR-06 | HITL | 승인 대기·승인·거절·만료 처리; 미승인/거절/만료 요청의 티켓 생성 0건 |
-| FR-07 | 안전한 업무 변경 | 서버 권한 검사·초안 해시 결합·멱등성; 동시 승인/재시도에도 1건 |
-| FR-08 | Guardrail | 입력 제한·도구 허용 목록·권한 필터·출력 검증; 검색 문서의 지시를 실행하지 않음 |
-| FR-09 | Streamlit 시연 | 채팅, 장애 표, 출처, 승인 카드, 최종 결과, 실패 안내 표시 |
-| FR-10 | 복구 및 추적 | 재시작 후 승인 대기 복원; UI 세션이 없어도 서버에서 본인 실행 조회 |
-| FR-11 | 기본 LLMOps | 구조화 로그·헬스체크·버전 기록·오프라인 평가 결과 저장 |
-
-## 5. 기술 구성
-
-| 영역 | 선택 | 역할 |
-|---|---|---|
-| Demo UI | Streamlit | 질문·조회 결과·근거·승인 화면 |
-| AI API | Python / FastAPI | 인증 경계, 실행 API, Agent 조정 |
-| Agent | LangGraph | 명시적 상태 전이, 승인 중단·재개 |
-| RAG | BGE-M3 / ChromaDB | 한국어 매뉴얼 임베딩·dense 검색 |
-| 업무 서비스 | Java / Spring Boot | 장애 조회, 승인 원장, 티켓 생성, 업무 규칙 |
-| 영속 저장소 | PostgreSQL | 업무 데이터 및 분리된 Agent 체크포인트 |
-| 검증 | pytest / JUnit | AI 정책 및 업무 트랜잭션 검증 |
-| 실행·CI | Docker Compose / GitHub Actions | 로컬 통합 환경 및 회귀 검사 |
-| LLMOps | JSON 로그 / 평가 데이터 / health | 실패 추적, 품질·지연 측정 |
-
-## 6. 목표 구조
-
-```text
-enterprise-ai-agent/
-├── README.md
-├── AGENTS.md
-├── docs/
-│   ├── architecture.md
-│   ├── operations.md
-│   ├── api-contract.md
-│   ├── demo-scenario.md
-│   └── implementation-plan.md
-├── prompts/codex-first-task.md
-├── ai-service/                 # FastAPI·LangGraph·RAG 구현 위치
-├── business-service/           # Spring Boot 구현 위치
-├── demo-ui/                    # Streamlit 구현 위치
-├── data/manuals/               # 합성 매뉴얼
-├── data/fixtures/              # 고정 시연 데이터
-├── eval/                       # 평가 입력 및 결과 규격
-├── infra/                      # DB 계정·스키마 초기화
-├── scripts/                    # 문서 검증 도구
-└── .github/                    # Python·Java·Compose CI·PR 템플릿
+```mermaid
+flowchart LR
+  U[운영자] --> UI[Streamlit]
+  UI --> AI[FastAPI / LangGraph]
+  AI --> R[BGE-M3 / ChromaDB]
+  AI --> L[LLM 답변·초안]
+  AI --> B[Spring 업무 API]
+  B --> D[(PostgreSQL business)]
+  AI --> C[(PostgreSQL agent)]
 ```
 
-## 7. 문서 읽는 순서
+- **업무 쓰기 경계:** AI는 business 스키마에 접근하지 않습니다. 승인·티켓·감사는 Spring이 담당합니다.
+- **사람 승인:** LLM이 반환한 승인 플래그를 신뢰하지 않습니다. 서버 원장과 불변 초안을 검증합니다.
+- **중복 방지:** 승인·티켓의 DB 제약과 동일 멱등 키를 사용하며 대기 노드와 쓰기 노드를 분리합니다.
+- **근거 검토:** 출처 ID를 검증하고 초안과 원문을 함께 보여줍니다. 출처 존재만으로 모든 문장의 사실성을 보장하지 않습니다.
+- **영속성:** LangGraph 체크포인트와 실행 소유권을 분리된 agent 스키마에 저장합니다.
 
-1. 이 README: 요구사항과 완료 기준
-2. [전체 Architecture](docs/architecture.md): 서비스 경계·Agent·RAG·데이터
-3. [운영 요구사항](docs/operations.md): 장애 복구·보안·테스트·평가·배포
-4. [AGENTS.md](AGENTS.md): 구현 작업 규칙
-5. [Codex 첫 작업 프롬프트](prompts/codex-first-task.md): 첫 구현 범위와 검증
+## 실제 확인한 결과
 
-상세 [API 계약](docs/api-contract.md), [구현 순서](docs/implementation-plan.md), [시연 대본](docs/demo-scenario.md)도 함께 제공합니다.
+| 항목 | 확인 내용 | 근거 |
+|---|---|---|
+| 업무 서비스 | Java 단위/API·DB 통합 총 26건 통과한 사용자 실행 기록 | [M3 기록](docs/m3-status.md) |
+| 검색·답변 | 기존 고정셋 30/30 회귀 통과. 보정에 사용했으므로 독립 평가가 아님 | [평가 원본](eval/results/m2-rag-fixed-20260906T035159Z.json) |
+| 추가 질문 | 최신 8건 HTTP·응답 계약 통과. 개발 Agent 의미 검토와 사람 검토를 구분 | [원본](eval/results/m4-quality-20260907T113033823304Z.json), [검토](docs/m4-quality-review.md) |
+| 승인 복구 | 실제 AI 재시작 후 대기 복원·승인/거절·동시 재전송 확인 | [원본](eval/results/m3-ticket-runs-20260906T134806256083Z.json) |
+| 응답 유실 | 실제 Spring 커밋 응답을 검사 transport에서 버린 후 별도 프로세스 재개. 티켓·생성 감사 각각 1건 | [원본](eval/results/m4-response-loss-20260907T114241659635Z.json) |
 
-## 8. 현재 사용 방법
+마지막 항목은 실제 Spring/PostgreSQL과 실행 그래프를 사용한 통제된 응답 유실 실험입니다. 물리 네트워크 단절이나 UI 전체 장애 실험과는 구분합니다.
 
-Python 3.12와 Docker Desktop을 준비하고 저장소 루트에서 실행합니다. 최초 실행에서만 로컬 인증 설정을 생성합니다.
+## 성능 관측과 한계
 
-```sh
-python scripts/init_env.py
-docker compose up --build -d --wait --wait-timeout 300
-docker compose run --rm seed
-python scripts/smoke.py
+i5-1035G4·RAM 약 8GB 노트북에서 초기 질문 임베딩에 41.6초가 걸리는 사례와 60초 timeout을 관측했습니다. 단계 로그로 임베딩 구간을 확인하고 기동 워밍업을 추가했습니다. 적용 후 한 번의 8건 실행은 첫 요청 11.2초, 이후 1.9~7.3초였습니다. 비교 환경을 통제하지 않아 워밍업 단독 개선율이나 p95/SLA를 주장하지 않습니다.
+
+추가 성능 최적화·장기 부하 검사·GPU/클라우드 전환은 이번 포트폴리오 범위에서 제외했습니다. 소규모 합성 문서 2개·4개 chunk의 시연이며 실제 기업 환경의 효과나 일반적인 정확도를 의미하지 않습니다. 원문을 확장한 초안 표현이 관측돼 사람 검토가 필요합니다.
+
+## 실행
+
+- 전체 기능의 신규 설치와 기존 환경 재개: **[최종 실행 안내](docs/final-runbook.md)**
+- 모델/LLM 없이 업무 조회만 확인: [M1 실행 안내](docs/runbook.md)
+- 시연 화면: [localhost:8501](http://localhost:8501)
+
+기존 모델·인덱스·비밀 설정이 있는 환경에서만 다음 명령으로 재개합니다.
+
+```powershell
+docker compose -f compose.yaml -f compose.m2.yaml -f compose.m3-app.yaml --profile rag up -d --wait --wait-timeout 300 ai ui
 ```
 
-[조회 화면](http://localhost:8501)에서 기본 조건으로 조회하면 INC-014와 INC-015가 표시됩니다. 자세한 실행·종료·테스트 명령은 [M1 실행 안내](docs/runbook.md)를 참고하세요. .env가 이미 있으면 init_env.py를 다시 실행하지 않습니다. LLM 키와 모델 다운로드는 아직 필요하지 않습니다.
+처음 실행하는 환경은 위 명령만으로 준비되지 않습니다. 실행 안내에 따라 환경 설정·seed·모델 적재가 필요합니다. API 키, .env, DB volume, 모델 캐시는 저장소에 포함하지 않습니다.
 
-## 9. 구현 단계와 포트폴리오 증거
+## 문서와 개발 기록
 
-| 단계 | 결과물 | 상태 |
-|---|---|---|
-| M0 | 요구사항·Architecture·운영·지침·첫 프롬프트 | 완료 |
-| M1 | 서비스 기동·DB migration·조회 API·Compose·기본 테스트 | 완료 |
-| M2 | 실제 BGE-M3 검색·LangGraph 답변·출처 UI | 실제 검색·화면 요소 검사 통과, 브라우저·LLM·품질 검증 대기 |
-| M3 | 영속 HITL·권한·멱등 티켓 생성 | 예정 |
-| M4 | 평가·장애 복구 검증·스크린샷·시연 영상 | 예정 |
+- [최종 정리·검증 범위](docs/final-status.md)
+- [전체 설계](docs/architecture.md), [API 계약](docs/api-contract.md), [운영 목표](docs/operations.md)
+- [응답 유실 실험 절차](docs/m4-response-loss.md)
+- [시연 순서와 캡처 목록](docs/portfolio-demo.md)
+- [프로젝트 경험 정리](docs/project-story.md)
+- [누적 개선 기록](docs/troubleshooting.md)
 
-구현 후 README에 실제 화면, 실행 환경, 측정된 평가 수치, 실패 사례, 설계 개선을 추가합니다. 통과하지 않은 CI 배지나 측정하지 않은 성능 수치는 게시하지 않습니다. 라이선스와 외부 모델·라이브러리 사용 조건은 공개 배포 전에 결정·확인합니다.
-
-## 개발 과정과 개선 기록
-[개선·문제 해결 기록](docs/troubleshooting.md)에 실제 오류의 원인, 해결 과정, 검증 결과를 누적합니다. 해결되지 않은 경고와 예방 개선도 구분해서 기록합니다.
-
-
-실제 수행한 검증과 한계는 [M1 검증 결과](docs/validation-m1.md)에 기록했습니다. Python 17건, Java 단위/API 15건과 PostgreSQL 통합 1건이 통과했습니다.
-
-## M2 진행 현황
-
-[구현 현황과 재개 절차](docs/m2-status.md)에 실제 검증 결과와 남은 항목을 정리했습니다. CPU 의존성 설치, 실제 LangGraph 2건, BGE-M3의 4개 chunk 적재, M2 기동·검색 smoke·실제 API 연동 화면 요소 검사가 통과했습니다. localhost는 M2 원문 검색 모드입니다. 브라우저 시각 확인·실제 LLM·검색 품질 보정은 남아 있어 M2 전체 완료는 아닙니다.
-
+설계 문서의 목표와 실제 구현은 다를 수 있습니다. 현재 상태는 최종 정리 문서를 우선합니다. 과거 README는 [개발 기록](docs/history/README-before-finalization.txt)에 보존했습니다. CI 배지는 원격 통과 확인 전에는 게시하지 않습니다.

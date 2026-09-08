@@ -1,0 +1,18 @@
+{
+  "run_id": "2054c169-0c72-40ab-bfaa-62bf24bc0289",
+  "checks": [
+    {
+      "phase": "build",
+      "passed": true
+    },
+    {
+      "phase": "pause",
+      "passed": true
+    },
+    {
+      "phase": "resume",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,13 @@
+# compose.yaml + compose.m2.yaml 다음에 적용하는 실제 승인 실행 구성.
+services:
+  ai:
+    build:
+      dockerfile: ai-service/Dockerfile.m3
+    environment:
+      M3_ENABLED: "true"
+      AGENT_DB_HOST: postgres
+      AGENT_DB_PASSWORD: ${AGENT_DB_PASSWORD:?Run scripts/init_env.py}
+  ui:
+    environment:
+      M3_ENABLED: "true"
+      DEMO_OPERATOR_TOKEN: ${DEMO_OPERATOR_TOKEN:?Run scripts/init_env.py}
