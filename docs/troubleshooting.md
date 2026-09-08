@@ -415,3 +415,5 @@ AI Healthy 후 실제 질문은 HTTP 200이지만 mode=extractive였습니다. �
 - 증상: Git 원격 조회가 Windows schannel `SEC_E_NO_CREDENTIALS`로 실패했습니다.
 - 해결: 이 명령에만 `git -c http.sslBackend=openssl`을 적용하자 원격 조회가 성공했습니다. 인증서 검증은 유지했으며 전역 Git 설정은 변경하지 않았습니다.
 - 별도 제약: 브라우저 자동화 초기화가 `apply deny-read ACLs` 오류로 실패하여 새 시연 캡처는 보류했습니다. AI 173건·UI 11건 및 문서 검사는 통과했습니다.
+
+- 게시 단계: HTTPS 조회 복구 후에도 Git credential helper로 인증하지 못했습니다. helper를 제외한 비대화형 검사에서 `could not read Username`을 확인했고, 연결 앱의 Contents 쓰기도 403으로 거절됐습니다. 파일 생성은 성공하지 않았으며 사용자 환경 Git 인증 후 push가 필요합니다.
