@@ -423,3 +423,5 @@ AI Healthy 후 실제 질문은 HTTP 200이지만 mode=extractive였습니다. �
 - 사용자 PowerShell에서 폴더 소유자 차이로 Git `dubious ownership`이 발생했습니다. 해당 프로젝트 경로만 safe.directory에 등록한 뒤 push가 성공했습니다.
 - 커밋 c0aaaf3의 Project checks와 Documentation checks 모두 success임을 GitHub API로 확인했습니다. 명령줄 인증 실패로 남겼던 게시 보류 상태는 해소됐습니다.
 - 화면 캡처 도구는 재시도에서도 초기화 ACL 오류가 지속됩니다. 새 이미지는 생성하지 않았습니다.
+
+- 캡처 보완: 2026-09-08 사용자가 제공한 실제 화면 3장을 원본 그대로 저장하고 README·시연 문서에 연결했습니다. 자동화 ACL 오류 자체를 해결한 것으로 표시하지 않습니다.

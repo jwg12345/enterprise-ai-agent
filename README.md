@@ -17,6 +17,26 @@ Streamlit · FastAPI · LangGraph · BGE-M3/ChromaDB · Spring Boot · PostgreSQ
 
 현재 날짜 조건은 **명시적 필터**입니다. 자연어의 “지난달”을 자동 해석하는 기능, 자동 백그라운드 복구는 후속 범위입니다. UI의 실행 조회·재개와 자동 복구를 구분합니다.
 
+## 실제 시연 화면
+
+2026-09-08 사용자가 제공한 로컬 합성 데이터 시연 캡처입니다.
+
+### 1. 검색 근거를 함께 보여주는 LLM 답변
+
+![운영 매뉴얼 답변과 검색 원문](docs/images/rag-answer.png)
+
+### 2. AI 티켓 초안 검토
+
+승인 요청·티켓 등록 전 미리보기입니다. 운영자가 내용과 근거를 검토합니다.
+
+![AI 티켓 초안 미리보기](docs/images/ticket-preview.png)
+
+### 3. 티켓 생성 완료
+
+화면에 완료 상태와 생성된 티켓 ID가 표시됩니다. 실제 시스템 변경이 아닌 프로젝트 DB의 시연용 티켓입니다.
+
+![티켓 생성 완료](docs/images/ticket-completed.png)
+
 ## 구조와 설계 선택
 
 ```mermaid
