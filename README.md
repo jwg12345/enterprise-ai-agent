@@ -19,7 +19,7 @@ Streamlit · FastAPI · LangGraph · BGE-M3/ChromaDB · Spring Boot · PostgreSQ
 
 ## 실제 시연 화면
 
-2026-09-08 사용자가 제공한 로컬 합성 데이터 시연 캡처입니다.
+로컬 합성 데이터 시연 캡처입니다.
 
 ### 1. 검색 근거를 함께 보여주는 LLM 답변
 
