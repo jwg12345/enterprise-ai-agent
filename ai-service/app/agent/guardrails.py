@@ -1,12 +1,14 @@
-"""M2 읽기 요청 분류. 실제 보안 경계는 쓰기 도구를 제공하지 않는 구조입니다."""
+#사용자 요청 분류"
 import re
 
 
 def guard(query: str) -> str:
+    #명시적 위험 패턴 검사
     text = re.sub(r"\s+", " ", query).strip()
     if re.search(r"(drop\s+table|delete\s+from|승인.{0,8}무시|ignore.{0,20}instructions)", text, re.I):
         return "DENIED"
 
+    #쓰기 관련 요청 탐지
     write_topic = re.search(r"티켓.{0,40}(만들|생성)|삭제해|서버.{0,8}재시작", text, re.I)
     if not write_topic:
         return "READ"
