@@ -1,3 +1,4 @@
+#RAG 서비스 실행 관리자(graph.py에서 정의한 그래프를 실제로 실행하기 위한 환경 준비)
 import asyncio
 import os
 from urllib.parse import urlparse
@@ -13,11 +14,15 @@ class AnswerService:
     def __init__(self, store, generator, client=None):
         self.store, self.generator, self.client = store, generator, client
 
+    #서비스 시작 (BGE-M3 모델을 로딩하고 ChromaDB 클라이언트 준비)
     @classmethod
     async def start(cls):
         store = await asyncio.to_thread(RagStore.from_env)
-        # 첫 사용자 요청 전에 CPU 임베딩과 인덱스 조회를 한 번 수행합니다.
-        # 합성 문구만 사용하며 LLM/업무 API는 호출하지 않습니다. 실패하면 준비 완료가 아닙니다.
+
+        #질문요청 약 60초후 timeout나서 추가한 코드(질문 임베딩 41.6초, 벡터 검색 0.184초)
+        #서비스 시작 단계에서 예시 질문을 한 번 검색하기(워밍업)
+        #질문 임베딩뿐 아니라 인덱스 확인, 벡터 검색도 한 번 수행
+        # -> 후속 8건의 테스트에서 첫 요청 11.2초 나머지 1.9~7.3초 걸림 timeout 발생 x
         if os.environ.get("RAG_WARMUP", "false").lower() == "true":
             async with asyncio.timeout(120):
                 await asyncio.to_thread(store.search, "운영 매뉴얼 점검 절차", "viewer")
