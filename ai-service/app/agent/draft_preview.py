@@ -21,10 +21,10 @@ class ProviderDraft(BaseModel):
     source_ids: list[str] = Field(max_length=5)
     abstain: bool = Field(strict=True)
 
-
+#초안 검증
 def validate_preview(content, incident, citations):
     result = ProviderDraft.model_validate_json(content)
-    allowed = {c["chunk_id"]: c for c in citations}
+    allowed = {c["chunk_id"]: c for c in citations} #answer.py의 validate_grounding()과 마찬가지로 검색결과에 없는 청크ID 사용할 수 없도록
     if len(set(result.source_ids)) != len(result.source_ids) or not set(result.source_ids) <= allowed.keys():
         raise AnswerFailure("검색 근거와 초안 출처가 일치하지 않습니다.")
     if result.abstain:
