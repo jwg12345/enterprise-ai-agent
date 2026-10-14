@@ -13,7 +13,7 @@ from pathlib import Path
 class RagUnavailable(Exception):
     pass
 
-
+#처리 단계별 시간 측정(RAG 검색의 각 단계가 얼마나 걸렸는지 측정)
 @contextmanager
 def measured_phase(operation_id, phase):
     logger = logging.getLogger("enterprise.ai")
