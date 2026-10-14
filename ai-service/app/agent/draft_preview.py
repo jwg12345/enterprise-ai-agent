@@ -1,4 +1,4 @@
-"""조회한 장애·검색 근거로 초안만 생성합니다. 승인/티켓 API를 호출하지 않습니다."""
+#AI 점검 요청서 초안 생성
 import json
 import os
 
@@ -8,8 +8,9 @@ from pydantic import BaseModel, ConfigDict, Field
 from app.approvals import Draft
 from app.agent.answers import AnswerFailure, redact
 
+#담당팀 결정 정책
 PROMPT_VERSION = "ticket-draft-v2"
-# 합성 시연용 명시적 분류-담당팀 정책. LLM은 담당팀/우선순위를 결정하지 않습니다.
+#장애 분류에 따라 담당팀을 고정된 규칙으로 결정 (장애분류:담당팀)
 TEAMS = {"NETWORK": "Platform", "SERVER": "Infrastructure", "APPLICATION": "Application"}
 
 
@@ -40,7 +41,7 @@ def validate_preview(content, incident, citations):
                   team=TEAMS[incident["category"]], priority=incident["severity"])
     return draft, used
 
-
+#LLM에 초안 작성 요청(query:사용자 점검 요청, incident:조회된 장애 기록, citations:RAG기 검색한 운영 매뉴얼 근거)
 async def generate_preview(client, query, incident, citations):
     if not citations:
         return None, []
