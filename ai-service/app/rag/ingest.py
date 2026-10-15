@@ -1,3 +1,4 @@
+#RagStore의 문서 적재 과정을 담당
 import os
 from pathlib import Path
 from app.rag.store import RagStore
