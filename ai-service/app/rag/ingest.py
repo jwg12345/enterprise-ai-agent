@@ -1,4 +1,4 @@
-#RagStore의 문서 적재 과정을 담당
+#운영 매뉴얼을 읽어서 ChromaDB에 저장하는 작업 실행
 import os
 from pathlib import Path
 from app.rag.store import RagStore
